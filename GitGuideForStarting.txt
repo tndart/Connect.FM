@@ -1,0 +1,23 @@
+Download git from https://git-scm.com/downloads
+
+Create new folder at your PC.
+open command line (cmd) and change directory (cd <directory full path>) to the location of this folder.
+and run following commands:
+
+git init
+
+git clone https://github.com/tndart/Connect.FM.git
+(It will take some time)
+
+Now all the code downloaded to your PC and you can start code with Bracket or Visual Studio Code or any IDE you want.
+Pay attention, you will need to configure your IDE to work with git (if you want easy use and not to run manual command line commands.
+
+Git tutorial to understand the professional term of use:
+https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
+
+NEVER try to push to master branch (Because it will failed), it configured as a protected branch.
+You should create new branch (see 'checkout' command) localy and then push it to the same branch remotly.
+PAY ATTENTION! Before you do 'push' you should run 'pull' for getting the last updates from other people.
+
+
+
