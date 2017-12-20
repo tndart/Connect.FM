@@ -9,8 +9,20 @@ class Container extends Component {
     }
 
     render() {
+
+        var containerStyle = {
+            display: "block",
+            position: "relative",
+            top: "80px",
+            padding: "30px",
+            margin: "10px",
+            "background-color": "rgba(0, 0, 0, 0.3)",
+            "border-radius": "10px",
+            color: "white"
+        };
+
         return (
-            <div className="mContainer">
+            <div style={containerStyle}>
                 {this.props.children}
             </div>
         )

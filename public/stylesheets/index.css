@@ -6,24 +6,6 @@ html, body {
     background-attachment: fixed;
 }
 
-.appmotto{
-    display:inline-block;
-    position: relative;
-    margin-left: -12px;
-    font-size: 0.75rem;
-}
-
-.mContainer {
-    display: block;
-    position: relative;
-    top: 80px;
-    padding: 30px;
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    color: white;
-}
-
 .MPlayer {
     background-color: rgba(255,255,255, 0.1);
     border-radius: 5px;
