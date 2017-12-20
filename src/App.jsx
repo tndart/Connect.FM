@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import MNavigation from './components/MNavigation';
-import MIntro from './components/MIntro';
-import MPlayer from './components/MPlayer';
+import NavigationBar from './components/NavigationBar';
+import Intro from './components/Intro';
+import MusicPlayer from './components/MusicPlayer';
+import Container from './components/Container';
+
 import {connect} from 'react-redux';
 import {playMusic} from './actions/index';
 
@@ -9,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appName: 'XMusic',
+            appName: 'Connect.FM',
             appMotto: 'Connect Life to Music',
             routes: [
                 {
@@ -32,26 +34,29 @@ class App extends Component {
     render() {
         return (
             <div>
-                <MNavigation
+                <NavigationBar
                     appName={this.state.appName}
                     appMotto={this.state.appMotto}
                     routes={this.state.routes}
                     search/>
-                <MIntro>
-                    <h4>
-                        Join Us !
-                    </h4>
-                    Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                    right at the coast of the Semantics, a large language ocean. A small river named
-                    Duden flows by their place and supplies it with the necessary regelialia. It is
-                    a paradisematic country, in which roasted parts of sentences fly into your
-                    mouth.
-                </MIntro>
 
-                <div className="mContainer">
-                    <MPlayer components="[play, prev, next]"></MPlayer>
-                </div>
+                <Container>
+                    <Intro>
+                        <h4>
+                            Join Us !
+                        </h4>
+                        Far far away, behind the word mountains, far from the countries Vokalia and
+                        Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
+                        right at the coast of the Semantics, a large language ocean. A small river named
+                        Duden flows by their place and supplies it with the necessary regelialia. It is
+                        a paradisematic country, in which roasted parts of sentences fly into your
+                        mouth.
+                    </Intro>
+                </Container>
+
+                <Container>
+                    <MusicPlayer components="[play, prev, next]"></MusicPlayer>
+                </Container>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {setValueOrDefault} from '../functions/componentExtender.js'
 
-class MNavigation extends Component {
+class NavigationBar extends Component {
     constructor(props) {
         super(props);
 
@@ -87,7 +87,7 @@ class MNavigation extends Component {
     }
 }
 
-export default MNavigation;
+export default NavigationBar;
 
 /*
 <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
