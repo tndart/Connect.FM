@@ -1,7 +1,8 @@
 html, body {
     height: 100%;
     width: 100%;
-    background-image: radial-gradient( circle at bottom right, #29B6F6 ,#01579B 65%);
+    /*background-image: radial-gradient( circle at bottom right, #29B6F6 ,#01579B 65%);*/
+    background-color: black;
     background-size: cover;
     background-attachment: fixed;
 }

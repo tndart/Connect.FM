@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import './MusicPlayer.css';
+import '../stylesheets/app.css';
 
 class MusicPlayer extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            components: props.components,
-            playlist: []
-        };
 
     }
 
@@ -23,21 +18,21 @@ class MusicPlayer extends Component {
             prevButton,
             nextButton;
 
-        if (this.isComponentNeeded(this.state.components, 'play')) {
+        if (this.isComponentNeeded(this.props.components, 'play')) {
             playButton = <button className="playerButton">
                 <i className="material-icons">
                     play_arrow
                 </i>
             </button>;
         }
-        if (this.isComponentNeeded(this.state.components, 'next')) {
+        if (this.isComponentNeeded(this.props.components, 'next')) {
             nextButton = <button className="playerButton">
                 <i className="material-icons">
                     skip_next
                 </i>
             </button>;
         }
-        if (this.isComponentNeeded(this.state.components, 'prev')) {
+        if (this.isComponentNeeded(this.props.components, 'prev')) {
             prevButton = <button className="playerButton">
                 <i className="material-icons">
                     skip_previous
@@ -58,6 +53,19 @@ class MusicPlayer extends Component {
                     <div className="col mx-auto" align="center">
                         {nextButton}
                     </div>
+
+                    <ul style={{"display":"block",
+                        "width": "100%",
+                        "color": "white",
+                        "listStyle": "none"}}>
+                    {
+                        this.props.playlist.map((song, index) => {
+                            return (
+                                <li key={index}> { song.songname } - { song.artist }</li>
+                            
+                        )})
+                    }
+                    </ul>
 
                 </div>
             </div>

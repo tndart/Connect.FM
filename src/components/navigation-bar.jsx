@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {setValueOrDefault} from '../functions/componentExtender.js'
+import {setValueOrDefault} from '../util/componentExtender.js'
+import '../stylesheets/app.css';
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -45,18 +46,11 @@ class NavigationBar extends Component {
             searchBar = this.showSearchBar();
         }
 
-        var appMottoStyle = {
-            display: "inline-block",
-            position: "relative",
-            "margin-left": "-12px",
-            "font-size": "0.75rem"
-        }
-
         return (
-            <nav className="navbar navbar-expand-lg navbar-blue bg-blue fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
                 <div className="navbar-brand">
-                    <a className="navbar-brand" href={this.state.homeLink}>{this.state.appName}</a>
-                    <div style={appMottoStyle}>
+                    <a className="app-brand" href={this.state.homeLink}>{this.state.appName}</a>
+                    <div className="app-motto">
                         {this.state.appMotto}
                     </div>
                 </div>

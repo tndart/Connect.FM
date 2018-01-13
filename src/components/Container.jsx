@@ -16,8 +16,8 @@ class Container extends Component {
             top: "80px",
             padding: "30px",
             margin: "10px",
-            "background-color": "rgba(0, 0, 0, 0.3)",
-            "border-radius": "10px",
+            "backgroundColor": "rgba(0, 0, 0, 0.3)",
+            "borderRadius": "10px",
             color: "white"
         };
 
