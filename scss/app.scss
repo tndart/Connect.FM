@@ -33,6 +33,10 @@ $secondary: orange;
 $background: nth($bluegray,8);
 $text: white;
 
+%border-radius {
+  border-radius: 10px;
+}
+
 /* General */ 
 body {
   height: 100%;
@@ -92,6 +96,30 @@ body {
 
 }
 
+// Line Gallery - NOT WORKING
+.line-container {
+  overflow: hidden;
+
+  @media(max-width: 767px) {
+    height: 100px;
+  }
+
+  @media(min-width: 768px) {
+    height: 200px;
+  }
+  
+  .line-slider {
+    position: relative;
+    left: 0;
+    top:0;
+    width: 30000px;
+    opacity: 1;
+    display: block;
+    margin: 0;
+    padding: 0;
+
+  }
+}
 
 .MusicPlayer {
   background-color: rgba(255,255,255, 0.1);
@@ -119,5 +147,4 @@ body {
   background-color: rgba(255,255,255, 0.2);
 }
 
-
-  
+@import '../src/components/collection/index'

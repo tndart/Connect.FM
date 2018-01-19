@@ -1,14 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+// Components imports
 import NavigationBar from './components/navigation-bar';
+import { ArtistPicker, TagsGallery } from './components/collection';
+
 import Intro from './components/Intro';
 import MusicPlayer from './components/MusicPlayer';
 import Container from './components/Container';
 import Login from './components/login';
 import Signup from './components/signup';
 
-import { connect } from 'react-redux';
-import { PLAYLIST } from './actions/playlist';
+import { fetchPlaylist } from './actions/playlist';
 
+// Consts Declarations
 const appName = 'Connect.FM';
 const appMotto = 'Connect Life to Music';
 const routes = [
@@ -27,7 +32,6 @@ const routes = [
     }
 ];
 
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +42,7 @@ class App extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props
-        dispatch(PLAYLIST.fetchPlaylist());
+        dispatch(fetchPlaylist());
     }
 
     loginCallback(){
@@ -52,8 +56,7 @@ class App extends Component {
                 <NavigationBar
                     appName={appName}
                     appMotto={appMotto}
-                    routes={routes}
-                    />
+                    routes={routes}/>
                 {
                     !this.state.userLogon && 
                     <Container>
@@ -62,9 +65,19 @@ class App extends Component {
                             </Login>
                     </Container>
                 }
+
+                <Container>
+                    <TagsGallery></TagsGallery>
+                </Container>
+
                 <Container>
                     <MusicPlayer components={['play', 'next', 'prev']} playlist={this.props.playlist.playlist}></MusicPlayer>
                 </Container>
+
+                <Container>
+                    <ArtistPicker type='demo'></ArtistPicker>
+                </Container>
+                
             </div>
         )
     }
@@ -74,7 +87,7 @@ function mapStateToProps(state) {
     const { playlist } = state
     
     return {
-        playlist
+        playlist 
     }
 }
 

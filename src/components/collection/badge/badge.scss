@@ -1,0 +1,41 @@
+.badge {
+    margin: 5px 10px;
+    cursor: pointer;
+  }
+  .badge-veryhigh {
+    background-color: rgba(255,255,255,1);
+    color: rgba(0,0,0,1);
+    padding: 10px 15px;
+  }
+  .badge-high {
+    background-color: rgba(255,255,255,0.75);
+    color: rgba(0,0,0,1);
+    padding: 7px 12px;
+  }
+  .badge-medium {
+    background-color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,1);
+    padding: 5px;
+  }
+  .badge-low {
+    background-color: rgba(255,255,255,0.20);
+    color: rgba(255,255,255,1);
+  }
+  .badge-verylow {
+    background-color: rgba(255,255,255,0.20);
+    color: rgba(255,255,255,0.5);
+  }
+  
+  .checked {
+      display: inline-block;
+      position: relative;
+      bottom: 5px;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+      background-image: url('../components/collection/images/check-16px.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-right: -15px;
+      margin-bottom: -10px;
+  }

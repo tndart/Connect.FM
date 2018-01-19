@@ -5,7 +5,6 @@ class MusicPlayer extends Component {
 
     constructor(props) {
         super(props);
-
     }
 
     isComponentNeeded(components, name) {
@@ -62,8 +61,8 @@ class MusicPlayer extends Component {
                         this.props.playlist.map((song, index) => {
                             return (
                                 <li key={index}> { song.songname } - { song.artist }</li>
-                            
-                        )})
+                            )
+                        })
                     }
                     </ul>
 

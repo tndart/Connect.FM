@@ -1,10 +1,12 @@
 import { fetch } from 'cross-fetch'
 
-const GET_NEW_PLAYLIST = 'FETCH_NEW_PLAYLIST'
-const NEW_PLAYLIST_REQ = 'FETCH_NEW_PLAYLIST_REQ'
-const NEW_PLAYLIST_RES = 'FETCH_NEW_PLAYLIST_RES'
-const NEW_PLAYLIST_ERR = 'FETCH_NEW_PLAYLIST_ERR'
+// Actions Name
+export const GET_NEW_PLAYLIST = 'GET_NEW_PLAYLIST'
+export const NEW_PLAYLIST_REQ = 'NEW_PLAYLIST_REQ'
+export const NEW_PLAYLIST_RES = 'NEW_PLAYLIST_RES'
+export const NEW_PLAYLIST_ERR = 'NEW_PLAYLIST_ERR'
 
+// Action Creators
 function getNewPlaylist(){
     return {
         type: GET_NEW_PLAYLIST
@@ -33,7 +35,7 @@ function errorNewPlaylist(err){
     }
 }
 
-function fetchPlaylist(){
+export function fetchPlaylist(){
     return dispatch => {
         dispatch(getNewPlaylist())
         dispatch(requestNewPlaylist())
@@ -47,12 +49,3 @@ function fetchPlaylist(){
             .then(json => dispatch(receivedNewPlaylist(json)))
     }
 }
-
-export const PLAYLIST = {
-    getNewPlaylist,
-    fetchPlaylist,
-    GET_NEW_PLAYLIST,
-    NEW_PLAYLIST_REQ,
-    NEW_PLAYLIST_RES,
-    NEW_PLAYLIST_ERR
-};

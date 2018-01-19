@@ -1,3 +1,6 @@
+.image-link, .image-link .check-mark-container, .image-link img.image, .image-link .title {
+  border-radius: 10px; }
+
 /* General */
 body {
   height: 100%;
@@ -40,6 +43,24 @@ body {
     border: 0px;
     outline: none; }
 
+.line-container {
+  overflow: hidden; }
+  @media (max-width: 767px) {
+    .line-container {
+      height: 100px; } }
+  @media (min-width: 768px) {
+    .line-container {
+      height: 200px; } }
+  .line-container .line-slider {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 30000px;
+    opacity: 1;
+    display: block;
+    margin: 0;
+    padding: 0; }
+
 .MusicPlayer {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
@@ -60,3 +81,86 @@ body {
 .playerButton:hover {
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.2); }
+
+/* --------------  Gallery Style  -------------- */
+.image-link {
+  display: inline-block;
+  position: relative;
+  cursor: pointer; }
+  @media (max-width: 767px) {
+    .image-link {
+      width: 20%;
+      height: 100px;
+      margin: 2px; } }
+  @media (min-width: 768px) {
+    .image-link {
+      width: 15%;
+      height: 150px;
+      margin: 5px; } }
+  .image-link .check-mark-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+    z-index: 3;
+    text-align: center; }
+    .image-link .check-mark-container i.check-mark {
+      position: relative;
+      top: calc(50% - 24px);
+      font-size: 48px; }
+  .image-link img.image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    opacity: 0.78; }
+  .image-link .title {
+    position: absolute;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 50%, transparent);
+    color: black;
+    font-weight: 400;
+    width: 100%;
+    padding: 2px 4px;
+    border-radius: 10px; }
+
+.badge {
+  margin: 5px 10px;
+  cursor: pointer; }
+
+.badge-veryhigh {
+  background-color: white;
+  color: black;
+  padding: 10px 15px; }
+
+.badge-high {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
+  padding: 7px 12px; }
+
+.badge-medium {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 5px; }
+
+.badge-low {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; }
+
+.badge-verylow {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5); }
+
+.checked {
+  display: inline-block;
+  position: relative;
+  bottom: 5px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../components/collection/images/check-16px.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: -15px;
+  margin-bottom: -10px; }

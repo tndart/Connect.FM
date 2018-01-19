@@ -13,11 +13,11 @@ class Container extends Component {
         var containerStyle = {
             display: "block",
             position: "relative",
-            top: "80px",
-            padding: "30px",
+            top: "70px",
+            padding: "10px",
             margin: "10px",
-            "backgroundColor": "rgba(0, 0, 0, 0.3)",
-            "borderRadius": "10px",
+            "backgroundColor": "rgba(0, 0, 0, 0.1)",
+            "borderRadius": "5px",
             color: "white"
         };
 

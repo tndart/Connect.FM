@@ -1,0 +1,58 @@
+// Gallery Image style
+.image-link {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    
+    @extend %border-radius;
+    
+    @media(max-width: 767px) {
+      width: 20%;
+      height: 100px;
+      margin: 2px;
+    }
+  
+    @media(min-width: 768px) {
+      width: 15%;
+      height: 150px;
+      margin: 5px;
+    }
+  
+    .check-mark-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.6; 
+      z-index: 3;
+      text-align: center;
+      @extend %border-radius;
+      
+      i.check-mark {
+        position: relative;
+        top: calc(50% - 24px);
+        font-size: 48px;
+      }
+    }
+  
+    img.image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      @extend %border-radius;
+      object-fit: cover;
+      opacity: 0.78;
+    }
+  
+    .title {
+      position: absolute;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5) 50% , transparent);
+      color: black;
+      font-weight: 400;
+      @extend %border-radius;
+      width: 100%;
+      padding: 2px 4px;
+      border-radius: 10px;
+    }
+  }

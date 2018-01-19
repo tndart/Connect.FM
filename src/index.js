@@ -11,7 +11,7 @@ const loggerMiddleware = createLogger()
 const store = createStore(
     rootReducer,
     applyMiddleware(
-        thunkMiddleware, // Helps 
+        thunkMiddleware, // Helps to async fetching
         loggerMiddleware
     )
 );
