@@ -28,9 +28,9 @@ $bluegray:(
   #263238
 );
 
-$primary: nth($indigo, 5);
+$primary: nth($bluegray, 5);
 $secondary: orange;
-$background: nth($bluegray,8);
+$background: nth($bluegray, 6);
 $text: white;
 
 %border-radius {
@@ -77,6 +77,16 @@ body {
       font-size: 0.75rem;
     }
   }
+}
+
+.custom-container {
+  display: block;
+  position: relative;
+  top: 70px;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: rgba(0, 0, 0, 0.1);
+  @extend %border-radius;
 }
 
 /* Login */ 

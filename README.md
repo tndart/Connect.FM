@@ -28,5 +28,7 @@ Please read GitGuideForStarting.txt file, if you have no experience working as a
 
         },
         playlist: [ Array of songs ]
-    }
+    },
+    tags: [],
+    artists: []
 }

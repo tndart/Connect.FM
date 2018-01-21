@@ -24,18 +24,23 @@ export default class ImagePicker extends Component {
                 {
                     this.props.array && 
                     this.props.array.map((obj, key) => {
-                        return ( 
-                            <Image 
-                                className = "col-3 col-sm-2" 
-                                checkedAction 
-                                onClick = {this.clickHandler} 
-                                _id = { obj._id }
-                                key = { key } 
-                                src = { obj.src } 
-                                title = { obj.name }
-                                isChecked = { obj.isChecked }> 
-                            </Image> 
-                        )
+                        if (obj.pic){
+                            return ( 
+                                <Image 
+                                    className = "col-4 col-sm-3 col-lg-2" 
+                                    checkedAction 
+                                    onClick = {this.clickHandler} 
+                                    _id = { obj._id }
+                                    key = { key } 
+                                    src = { obj.pic } 
+                                    title = { obj.name }
+                                    isChecked = { obj.isChecked }> 
+                                </Image> 
+                            )
+                        }
+                        else {
+                            console.info(`ImagePicker:: Cant show ${obj.name} (${obj._id}) because it missed a picture`);
+                        }
                     })
                 }
                 </div>

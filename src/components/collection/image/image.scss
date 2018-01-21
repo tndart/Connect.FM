@@ -3,19 +3,26 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
+    text-overflow: clip;
     
     @extend %border-radius;
     
-    @media(max-width: 767px) {
-      width: 20%;
+    @media(max-width: 450px) {
+      height: 70px;
+      margin: 1px;
+      font-size: smaller;
+    }
+
+    @media(min-width: 451px) and (max-width: 767px) {
       height: 100px;
       margin: 2px;
+      font-size: smaller;
     }
   
     @media(min-width: 768px) {
-      width: 15%;
       height: 150px;
       margin: 5px;
+      font-size: medium;
     }
   
     .check-mark-container {
@@ -41,18 +48,19 @@
       position: absolute;
       @extend %border-radius;
       object-fit: cover;
-      opacity: 0.78;
+      opacity: 1;
     }
   
     .title {
       position: absolute;
       text-align: center;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.5) 50% , transparent);
-      color: black;
-      font-weight: 400;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 50%, transparent);
+      color: $secondary;
+      font-weight: 600;
       @extend %border-radius;
       width: 100%;
       padding: 2px 4px;
       border-radius: 10px;
+      z-index: 4;
     }
   }

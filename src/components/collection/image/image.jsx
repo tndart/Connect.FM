@@ -19,11 +19,11 @@ export default class Image extends Component {
     render() {
         return (
             <div onClick={this.props.checkedAction ? this.clickHandler : this.props.onClick} className={this.props.className + ' image-link'} >
+                <img className='image' alt={this.props.title} src={this.props.src} />
                 { 
                     this.props.isChecked &&
                     <div className='check-mark-container'><i className="material-icons check-mark">check</i> </div>
                 }
-                <img className='image' alt={this.props.title} src={this.props.src} />
                 <div className='title'> {this.props.title} </div>
             </div>
         )

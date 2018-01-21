@@ -3,9 +3,7 @@ import TagActions from '../actions'
 const initialState = {
     topTags: [],
     lastFm: {    
-        shouldFetch: false,
         isFetching: false,
-        gotData: false,
         error: ''
     }
 };
@@ -27,7 +25,7 @@ export default function tags(state = initialState, action){
                 const newArr = state.topTags.concat(action.payload)  
                 const idPositions = newArr.map(el => el._id)
                 const newPayload = newArr.filter((item, pos, arr) => {
-                                                return idPositions.indexOf(item._id) == pos;
+                                                return idPositions.indexOf(item._id) === pos;
                 })
 
                 return Object.assign({}, state, {

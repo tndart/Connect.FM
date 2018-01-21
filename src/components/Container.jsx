@@ -9,20 +9,8 @@ class Container extends Component {
     }
 
     render() {
-
-        var containerStyle = {
-            display: "block",
-            position: "relative",
-            top: "70px",
-            padding: "10px",
-            margin: "10px",
-            "backgroundColor": "rgba(0, 0, 0, 0.1)",
-            "borderRadius": "5px",
-            color: "white"
-        };
-
         return (
-            <div style={containerStyle}>
+            <div className='container custom-container'>
                 {this.props.children}
             </div>
         )

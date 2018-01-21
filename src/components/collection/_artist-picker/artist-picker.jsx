@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ImagePicker } from '../index';
 import { connect } from 'react-redux';
-import { getDemo, checkingToggle } from '../../../actions/artists'
+import { getDemo, checkingToggle, getTopArtistsByTags } from '../../../actions/artists'
 
 /* UI component only , used for style a basic container in app  */
 class ArtistPicker extends Component {
@@ -15,8 +15,20 @@ class ArtistPicker extends Component {
     }
 
     componentDidMount(){
-        const { dispatch } = this.props
-        dispatch(getDemo());
+        const { dispatch, tagsChecked} = this.props
+
+        if (tagsChecked && tagsChecked.length > 0){
+            dispatch(getTopArtistsByTags(tagsChecked));
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log('componentDidUpdate')
+        
+        if (prevProps.amountOfTags !== this.props.amountOfTags){
+            const { dispatch, tagsChecked, tagsUnchecked } = this.props
+            dispatch(getTopArtistsByTags(tagsChecked, tagsUnchecked));
+        }
     }
 
     clickHandler(e, props){
@@ -40,9 +52,15 @@ class ArtistPicker extends Component {
 
 function mapStateToProps(state) {
     const artists = state.artists.list;
+    const tagsChecked = state.tags.topTags.filter(tag => tag.isChecked === true);
+    const tagsUnchecked = state.tags.topTags.filter(tag => tag.isChecked === false)
+    const amountOfTags = tagsChecked.length;
     
     return {
-        artists
+        artists,
+        tagsChecked,
+        tagsUnchecked,
+        amountOfTags
     }
 }
 

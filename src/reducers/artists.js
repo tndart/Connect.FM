@@ -3,9 +3,7 @@ import ArtistActions from '../actions'
 const initialState = {
     list: [],
     lastFm: {
-        shouldFetch: false,
         isFetching: false,
-        gotData: false,
         list: []
     }
 };
@@ -27,42 +25,55 @@ export default function artists(state = initialState, action){
             })
 
         case ArtistActions.TOP_ARTISTS_REQ:
-            return state
-
-            /*return Object.assign({}, state, {
-                fetchLastFM: {
-                    shouldFetch: true,
-                    list: []
-                }
-            })*/
-        case ArtistActions.TOP_ARTISTS_RES: 
-            return state
-
-            /*const newArr = state.payload.concat(payload)  
-            const idPositions = newArr.map(el => el.id)
-            const newPayload = newArr.filter((item, pos, arr) => {
-                                            return idPositions.indexOf(item.id) == pos;
-                                        })
-            return state.merge({ payload: newPayload })*/
-
-            /*if(state.shouldFetch)
+            if(!state.lastFm.isFetching){
                 return Object.assign({}, state, {
-                    fetchLastFM: {
-                        shouldFetch: false,
+                    lastFm: {
                         isFetching: true,
-                        gotData: false
+                        list: []
                     }
-            });*/
+                })
+            }
+
+            return state;
+        case ArtistActions.TOP_ARTISTS_RES: 
+            if(state.lastFm.isFetching) {
+                if (action.payload && action.payload.length > 0) {
+                    const newArr = state.list.concat(action.payload)
+                    const idPositions = newArr.map(el => el._id)
+                    const newPayload = newArr.filter((item, pos, arr) => {
+                        return idPositions.indexOf(item._id) === pos
+                    })
+
+                    return Object.assign({}, state, {
+                        list: newPayload,
+                        lastFm: {
+                            isFetching: false,
+                            list: action.payload
+                        }
+                    })
+                }
+            }
+
+            return state;
         case ArtistActions.TOP_ARTISTS_ERR: 
             return state
 
-            /*return Object.assign({}, state, {
-                fetchLastFM: {
-                    isFetching: false,
-                    gotData: true,
-                    err: action.err
+        case ArtistActions.REMOVE_ARTISTS:
+            const lastArr = state.list;
+            const uncheckedNames = lastArr.map(el => {
+                for (var index = 0; index < action.tagsUnchecked.length; index++) {
+                    const tags = el.tags.map(el => el.name)
+                    if (tags.includes(action.tagsUnchecked[index].name))
+                        return el._id;
                 }
-            });*/
+            })
+            const newPayload = lastArr.filter((item,pos,arr) => {
+                return uncheckedNames.indexOf(item._id) !== pos
+            })
+
+            return Object.assign({}, state, {
+                list: newPayload
+            })
         default: 
             return state
     }

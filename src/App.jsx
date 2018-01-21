@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import NavigationBar from './components/navigation-bar';
 import { ArtistPicker, TagsGallery } from './components/collection';
 
-import Intro from './components/Intro';
+import Intro from './components/intro';
 import MusicPlayer from './components/MusicPlayer';
-import Container from './components/Container';
+import Container from './components/container';
 import Login from './components/login';
 import Signup from './components/signup';
 
