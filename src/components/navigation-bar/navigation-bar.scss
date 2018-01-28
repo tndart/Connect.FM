@@ -1,0 +1,31 @@
+
+/* Navigation Bar */ 
+.navbar {
+    background-color: $primary-dark;
+    color: $primary-dark-text;
+  
+    .navbar-brand {
+      a, button{
+        display: inline;
+        font-size: $logo-font;
+        font-weight: 500;
+        white-space: nowrap;
+        color: $primary-dark-text;
+
+        &:hover, &:focus{
+          text-decoration: none;
+        }
+      }
+  
+      .app-motto{
+        display: inline;
+        position: relative;
+        margin-left: 5%;
+        font-size: $small-font;
+        @media(max-width: $screen-width-tablet){
+          display: none;
+        }
+      }
+    }
+  }
+  

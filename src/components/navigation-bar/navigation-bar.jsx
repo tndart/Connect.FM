@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
-import {setValueOrDefault} from '../util/componentExtender.js'
-import '../stylesheets/app.css';
+import React, { Component } from 'react';
+import { NavLink, Link, Route } from 'react-router-dom'
+
+import { setValueOrDefault } from '../../util/componentExtender.js'
+import '../../stylesheets/app.css';
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -47,7 +49,8 @@ class NavigationBar extends Component {
         }
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div className="container">
+            <nav className="navbar navbar-expand-md navbar-dark fixed-top">
                 <div className="navbar-brand">
                     <a className="app-brand" href={this.state.homeLink}>{this.state.appName}</a>
                     <div className="app-motto">
@@ -73,7 +76,7 @@ class NavigationBar extends Component {
                             .map((item, index) => {
                                 return (
                                     <li key={index} className="nav-item">
-                                        <a className="nav-link" href={item.link}>{item.name}</a>
+                                        <NavLink className="nav-link" to={item.link}>{item.name}</NavLink>
                                     </li>
                                 )
                             })
@@ -83,6 +86,8 @@ class NavigationBar extends Component {
                     {searchBar}
                 </div>
             </nav>
+
+            </div>
         )
     }
 }

@@ -19,9 +19,7 @@ export default class Badge extends Component {
         return (
             <div style={{"display" : "inline-block"}}>
                 <div key={this.props._id} className={'badge tag ' + this.props.className} onClick={this.clickHandler}> 
-                { 
-                    this.props.name.toUpperCase() 
-                }
+                    { this.props.name.toUpperCase() }
                 </div>
                 { 
                     this.props.isChecked &&

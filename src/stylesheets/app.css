@@ -1,43 +1,28 @@
+/* --------------  Global Configuration and Consts  -------------- */
 .custom-container, .image-link, .image-link .check-mark-container, .image-link img.image, .image-link .title {
-  border-radius: 10px; }
+  border-radius: 7px; }
 
 /* General */
 body {
-  height: 100%;
   width: 100%;
-  /*background-image: radial-gradient( circle at bottom right, #29B6F6 ,#01579B 65%);*/
-  background-color: #607d8b;
+  min-width: 320px;
+  background-color: #e8eaf6;
   background-size: cover;
   background-attachment: fixed;
-  color: white; }
-
-/* Navigation Bar */
-.navbar {
-  background-color: #263238; }
-  .navbar .navbar-brand a, .navbar .navbar-brand button {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    color: orange; }
-    .navbar .navbar-brand a:hover, .navbar .navbar-brand a:focus, .navbar .navbar-brand button:hover, .navbar .navbar-brand button:focus {
-      text-decoration: none; }
-  .navbar .navbar-brand .app-motto {
-    display: inline-block;
-    position: relative;
-    margin-left: -12px;
-    font-size: 0.75rem; }
+  color: #37474f; }
 
 .custom-container {
-  display: block;
   position: relative;
-  top: 70px;
+  top: 65px;
   padding: 10px;
-  margin: 10px auto;
+  margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.1); }
+  @media (min-width: 768px) {
+    .custom-container {
+      width: 90%; } }
+  @media (max-width: 768px) {
+    .custom-container {
+      width: 97%; } }
 
 /* Login */
 .google-login-button {
@@ -50,6 +35,10 @@ body {
   .google-login-button:hover, .google-login-button:focus, .google-login-button:active {
     border: 0px;
     outline: none; }
+
+.genres-container {
+  display: flex;
+  flex-direction: column; }
 
 .line-container {
   overflow: hidden; }
@@ -98,12 +87,12 @@ body {
   text-overflow: clip; }
   @media (max-width: 450px) {
     .image-link {
-      height: 70px;
+      height: 100px;
       margin: 1px;
       font-size: smaller; } }
   @media (min-width: 451px) and (max-width: 767px) {
     .image-link {
-      height: 100px;
+      height: 125px;
       margin: 2px;
       font-size: smaller; } }
   @media (min-width: 768px) {
@@ -115,25 +104,23 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: black;
-    opacity: 0.6;
-    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center; }
     .image-link .check-mark-container i.check-mark {
       position: relative;
       top: calc(50% - 24px);
-      font-size: 48px; }
+      font-size: 48px;
+      color: white; }
   .image-link img.image {
     width: 100%;
     height: 100%;
     position: absolute;
-    object-fit: cover;
-    opacity: 1; }
+    object-fit: cover; }
   .image-link .title {
     position: absolute;
     text-align: center;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 50%, transparent);
-    color: orange;
+    color: #ff7043;
     font-weight: 600;
     width: 100%;
     padding: 2px 4px;
@@ -179,3 +166,24 @@ body {
   background-size: cover;
   margin-right: -15px;
   margin-bottom: -10px; }
+
+/* Navigation Bar */
+.navbar {
+  background-color: #303f9f;
+  color: white; }
+  .navbar .navbar-brand a, .navbar .navbar-brand button {
+    display: inline;
+    font-size: 16pt;
+    font-weight: 500;
+    white-space: nowrap;
+    color: white; }
+    .navbar .navbar-brand a:hover, .navbar .navbar-brand a:focus, .navbar .navbar-brand button:hover, .navbar .navbar-brand button:focus {
+      text-decoration: none; }
+  .navbar .navbar-brand .app-motto {
+    display: inline;
+    position: relative;
+    margin-left: 5%;
+    font-size: 9pt; }
+    @media (max-width: 768px) {
+      .navbar .navbar-brand .app-motto {
+        display: none; } }

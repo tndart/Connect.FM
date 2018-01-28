@@ -60,20 +60,27 @@ export default function artists(state = initialState, action){
 
         case ArtistActions.REMOVE_ARTISTS:
             const lastArr = state.list;
-            const uncheckedNames = lastArr.map(el => {
-                for (var index = 0; index < action.tagsUnchecked.length; index++) {
-                    const tags = el.tags.map(el => el.name)
-                    if (tags.includes(action.tagsUnchecked[index].name))
-                        return el._id;
-                }
-            })
-            const newPayload = lastArr.filter((item,pos,arr) => {
-                return uncheckedNames.indexOf(item._id) !== pos
-            })
 
-            return Object.assign({}, state, {
-                list: newPayload
-            })
+            if (action.tagsUnchecked && action.tagsUnchecked.length > 0){
+                const uncheckedNames = lastArr.map(el => {
+                    for (var index = 0; index < action.tagsUnchecked.length; index++) {
+                        const tags = el.tags.map(el => el.name)
+                        if (tags.includes(action.tagsUnchecked[index].name))
+                            return el._id;
+                    }
+
+                    return undefined;
+                })
+                const newPayload = lastArr.filter((item,pos,arr) => {
+                    return uncheckedNames.indexOf(item._id) !== pos
+                })
+
+                return Object.assign({}, state, {
+                    list: newPayload
+                })
+            }
+
+            return state
         default: 
             return state
     }

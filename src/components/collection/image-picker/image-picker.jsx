@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Image } from '../index'
 
+import { checkingToggle } from '../../../actions/artists';
+
 /* UI component only , used for style a basic container in app  */
-export default class ImagePicker extends Component {
+class ImagePicker extends Component {
     constructor(props) {
         super(props)
 
@@ -10,7 +13,9 @@ export default class ImagePicker extends Component {
     }
 
     clickHandler(e, props){
-        console.log(`Image number ${props.oId} with the name ${props.title} clicked ${props.isChecked}!`)
+        const { dispatch } = this.props
+        const newCheckedState = props.isChecked ? false : true;
+        dispatch(checkingToggle(props._id, newCheckedState));
 
         if (this.props.onClick) {
             this.props.onClick(e, props)
@@ -40,6 +45,7 @@ export default class ImagePicker extends Component {
                         }
                         else {
                             console.info(`ImagePicker:: Cant show ${obj.name} (${obj._id}) because it missed a picture`);
+                            return '';
                         }
                     })
                 }
@@ -49,3 +55,4 @@ export default class ImagePicker extends Component {
     }
 }
 
+export default connect(null)(ImagePicker);

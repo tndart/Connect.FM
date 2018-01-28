@@ -1,10 +1,20 @@
-import React, {Component} from 'react';
-import '../stylesheets/app.css';
+import React, {Component} from 'react'
+import { connect } from 'react-redux'
+
+import fetchPlaylist from '../actions/index'
+import '../stylesheets/app.css'
 
 class MusicPlayer extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
+
+        this.state = {}
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(fetchPlaylist());
     }
 
     isComponentNeeded(components, name) {
@@ -72,4 +82,13 @@ class MusicPlayer extends Component {
     }
 }
 
-export default MusicPlayer;
+function mapStateToProps(state) {
+    const { playlist } = state
+    
+    return {
+        playlist 
+    }
+}
+
+export default connect(mapStateToProps)(MusicPlayer);
+

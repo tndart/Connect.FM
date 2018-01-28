@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { getTopTags, checkingToggle } from '../../actions/tags'
-import { Badge } from './index'
+import PropTypes from 'prop-types'
+import { getTopTags, checkingToggle } from '../../../actions/tags'
+import { Badge } from '../index'
 
-class TagsGallery extends Component {
+class BadgePicker extends Component {
     constructor(props) {
         super(props);
 
@@ -44,9 +45,10 @@ class TagsGallery extends Component {
 
     render() {
         return (
-            <div className="tags-container">
+            <div className={"badge-picker-container " + this.props.className}>
             {
-                this.props.topTags.map((tag, key) => {
+                this.props && this.props.list &&
+                this.props.list.map((tag, key) => {
                     return (
                         <Badge _id={tag._id} key={key} className={this.colorByRank(tag.songCounter)} name={tag.name} onClick={this.clickHandler} isChecked={tag.isChecked}> </Badge>
                     )
@@ -57,13 +59,8 @@ class TagsGallery extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { topTags, error } = state.tags
-    
-    return {
-        topTags,
-        error
-    }
+BadgePicker.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default connect(mapStateToProps)(TagsGallery);
+export default connect(null)(BadgePicker);
