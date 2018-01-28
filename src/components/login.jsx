@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login-component'; // https://github.com/kennetpostigo/react-google-login-component
 
+/*
+{
+    !this.state.userLogon && 
+    <Container>
+            <Login google callback={this.loginCallback}>
+            
+            </Login>
+    </Container>
+}
+*/
+
 /* UI component only , used for style a basic container in app  */
 class Login extends Component {
     constructor(props) {

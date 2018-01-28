@@ -8,13 +8,13 @@
     @extend %border-radius;
     
     @media(max-width: 450px) {
-      height: 70px;
+      height: 100px;
       margin: 1px;
       font-size: smaller;
     }
 
     @media(min-width: 451px) and (max-width: 767px) {
-      height: 100px;
+      height: 125px;
       margin: 2px;
       font-size: smaller;
     }
@@ -29,26 +29,24 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: black;
-      opacity: 0.6; 
-      z-index: 3;
+      background-color: rgba(0,0,0,0.5);
       text-align: center;
       @extend %border-radius;
-      
+
       i.check-mark {
         position: relative;
         top: calc(50% - 24px);
         font-size: 48px;
+        color: white;
       }
     }
-  
+
     img.image {
       width: 100%;
       height: 100%;
       position: absolute;
-      @extend %border-radius;
       object-fit: cover;
-      opacity: 1;
+      @extend %border-radius;
     }
   
     .title {

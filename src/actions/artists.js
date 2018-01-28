@@ -55,12 +55,12 @@ export function getTopArtistsByTags(tagsChecked, tagsUnchecked, skip=0, limit=30
         var artists = []
         var index = 0;
         tagsChecked.forEach(tag => {
-            index++;
             fetch(ARTISTS_BY_TAG_URL.replace('{tag}', tag.name)).then(response => response.json(), 
             err => {
                 dispatch(Error(TOP_ARTISTS_ERR,err));
             }).then((json) => {
-                if (json){
+                index++;
+                if (json) {
                     artists = artists.concat(json);
                 }
 

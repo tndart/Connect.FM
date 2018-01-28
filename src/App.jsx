@@ -1,48 +1,38 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 
 // Components imports
-import NavigationBar from './components/navigation-bar';
-import { ArtistPicker, TagsGallery } from './components/collection';
-
-import Intro from './components/intro';
-import MusicPlayer from './components/MusicPlayer';
-import Container from './components/container';
-import Login from './components/login';
-import Signup from './components/signup';
-
-import { fetchPlaylist } from './actions/playlist';
+import NavigationBar from './components/navigation-bar/navigation-bar'
+import LoginPage from './components/login'
+import GenresPage from './components/__genres'
+import ArtistsPage from './components/__artists'
+import AboutPage from './components/__about'
 
 // Consts Declarations
-const appName = 'Connect.FM';
-const appMotto = 'Connect Life to Music';
+const appName = 'Connect.FM'
+const appMotto = 'Connect Life to Music'
 const routes = [
     {
-        "name": "Who We Are",
-        "link": "#about"
+        "name": "1. Who we are",
+        "link": "/"
     }, {
-        "name": "Our Music",
-        "link": "#music"
+        "name": "Login",
+        "link": "/login"
     }, {
-        "name": "Products",
-        "link": "#products"
+        "name": "2. Select your music",
+        "link": "/genres"
     }, {
         "name": "Contact",
-        "link": "#contact"
+        "link": "/about"
     }
 ];
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userLogon: null,
         };
-    }
-
-    componentDidMount() {
-        const { dispatch } = this.props
-        dispatch(fetchPlaylist());
     }
 
     loginCallback(){
@@ -57,38 +47,17 @@ class App extends Component {
                     appName={appName}
                     appMotto={appMotto}
                     routes={routes}/>
-                {
-                    !this.state.userLogon && 
-                    <Container>
-                            <Login google callback={this.loginCallback}>
-                            
-                            </Login>
-                    </Container>
-                }
-
-                <Container>
-                    <TagsGallery></TagsGallery>
-                </Container>
-
-                <Container>
-                    <MusicPlayer components={['play', 'next', 'prev']} playlist={this.props.playlist.playlist}></MusicPlayer>
-                </Container>
-
-                <Container>
-                    <ArtistPicker type='demo'></ArtistPicker>
-                </Container>
+                    
+                <Switch>
+                    <Route exact path='/' component={AboutPage}/>
+                    <Route path='/login' component={LoginPage}/>
+                    <Route path='/genres' component={GenresPage}/>
+                    <Route path='/artists' component={ArtistsPage}/>
+                </Switch>
+               
                 
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    const { playlist } = state
-    
-    return {
-        playlist 
-    }
-}
-
-export default connect(mapStateToProps)(App);

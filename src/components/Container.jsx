@@ -10,7 +10,7 @@ class Container extends Component {
 
     render() {
         return (
-            <div className='container custom-container'>
+            <div className={'container-fluid custom-container ' + this.props.className}>
                 {this.props.children}
             </div>
         )

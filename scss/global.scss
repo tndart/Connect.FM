@@ -1,0 +1,59 @@
+/* --------------  Global Configuration and Consts  -------------- */
+
+$indigo: (
+  #e8eaf6, // 50
+  #c5cae9, // 100
+  #9fa8da, // 200
+  #7986cb, // 300
+  #5c6bc0, // 400
+  #3f51b5, // 500
+  #3949ab, // 600
+  #303f9f, // 700
+  #283593, // 800
+  #1a237e, // 900
+  #8c9eff, // A100
+  #536dfe, // A200
+  #3d5afe, // A400
+  #304ffe  // A700
+);
+
+$bluegray:(
+  #eceff1, // 50
+  #cfd8dc, // 100
+  #b0bec5, // 200
+  #90a4ae, // 300
+  #78909c, // 400
+  #607d8b, // 500
+  #546e7a, // 600
+  #455a64, // 700
+  #37474f, // 800
+  #263238  // 900
+);
+
+$primary: #e8eaf6;
+$primary-light: white;
+$primary-dark: #303f9f;
+$primary-dark-text: white;
+$secondary: #ff7043;
+$text-color: #37474f;
+$secondary-text-color: white;
+$small-font: 9pt;
+$regular-font: 12pt;
+$header-font: 14pt;
+$logo-font: 16pt;
+$theme: 'dark'; // 'light'
+
+@mixin shadeTheme($theme){
+    @if ($theme == 'dark'){
+        background-color: rgba(0,0,0,0.1);
+    }
+    @else
+    {
+        background-color: rgba(255,255,255,0.1);
+    }
+}
+
+$screen-width-phone: 576px;
+$screen-width-tablet: 768px;
+$screen-width-laptop: 992px;
+$screen-width-wide: 1200px;
