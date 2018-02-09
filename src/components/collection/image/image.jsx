@@ -22,7 +22,7 @@ export default class Image extends Component {
             if(this.props.isChecked){
                 return(
                     <div className='check-mark-container'>
-                        <i className="material-icons check-mark">check</i>
+                        <i className="material-icons md-48 check-mark">check</i>
                     </div>
                 )
             }

@@ -19,14 +19,14 @@ class GenresPage extends Component {
         return (
             <Container>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-2">
                         <Link style={{float: "left"}} className="btn btn-primary" to="/">Back</Link>
                     </div>
                     <div className="col">
-                        <h4 style={{textAlign: "center"}}>Pick your genres:</h4>
+                        <h4 style={{textAlign: "center"}}>Genres:</h4>
                     <br/>
                     </div>
-                    <div className="col">
+                    <div className="col-2">
                         <Link style={{float: "right"}} className="btn btn-primary" to="/artists">Proceed</Link>
                     </div>
                 </div>

@@ -16,9 +16,13 @@ export default class Badge extends Component {
     }
 
     render() {
+        function isCheckedClasses(){
+            return this && this.props.isChecked ? 'badge-checked ' : ''
+        }
+
         return (
             <div style={{"display" : "inline-block"}}>
-                <div key={this.props._id} className={'badge tag ' + this.props.className} onClick={this.clickHandler}> 
+                <div key={this.props._id} className={'badge tag ' + isCheckedClasses() + this.props.className} onClick={this.clickHandler}> 
                     { this.props.name.toUpperCase() }
                 </div>
                 { 

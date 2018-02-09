@@ -1,4 +1,16 @@
 /* --------------  Global Configuration and Consts  -------------- */
+.material-icons.md-18 {
+  font-size: 18px; }
+
+.material-icons.md-24 {
+  font-size: 24px; }
+
+.material-icons.md-36 {
+  font-size: 36px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
 .custom-container, .image-link, .image-link .check-mark-container, .image-link img.image, .image-link .title {
   border-radius: 7px; }
 
@@ -6,7 +18,7 @@
 body {
   width: 100%;
   min-width: 320px;
-  background-color: #e8eaf6;
+  background-color: white;
   background-size: cover;
   background-attachment: fixed;
   color: #37474f; }
@@ -16,7 +28,7 @@ body {
   top: 65px;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: rgba(0, 0, 0, 0.1); }
+  background-color: rgba(0, 0, 0, 0.07); }
   @media (min-width: 768px) {
     .custom-container {
       width: 90%; } }
@@ -35,6 +47,14 @@ body {
   .google-login-button:hover, .google-login-button:focus, .google-login-button:active {
     border: 0px;
     outline: none; }
+
+.btn-google {
+  color: white;
+  background-color: #de5f54;
+  border-color: #de5f54; }
+  .btn-google:hover, .btn-google:active, .btn-google:focus {
+    background-color: #ef5f54;
+    border-color: #ef5f54; }
 
 .genres-container {
   display: flex;
@@ -109,7 +129,6 @@ body {
     .image-link .check-mark-container i.check-mark {
       position: relative;
       top: calc(50% - 24px);
-      font-size: 48px;
       color: white; }
   .image-link img.image {
     width: 100%;
@@ -130,29 +149,34 @@ body {
 .badge {
   margin: 5px 10px;
   cursor: pointer; }
+  .badge:hover {
+    background-color: #dd4e21; }
+
+.badge-checked {
+  background-color: #dd4e21; }
 
 .badge-veryhigh {
-  background-color: white;
-  color: black;
+  background-color: #bb2c00;
+  color: white;
   padding: 10px 15px; }
 
 .badge-high {
-  background-color: rgba(255, 255, 255, 0.75);
-  color: black;
+  background-color: #aa1b00;
+  color: white;
   padding: 7px 12px; }
 
 .badge-medium {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #990a00;
   color: white;
   padding: 5px; }
 
 .badge-low {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white; }
+  background-color: #880000;
+  color: rgba(255, 255, 255, 0.9); }
 
 .badge-verylow {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.5); }
+  background-color: #770000;
+  color: rgba(255, 255, 255, 0.8); }
 
 .checked {
   display: inline-block;
@@ -169,7 +193,7 @@ body {
 
 /* Navigation Bar */
 .navbar {
-  background-color: #303f9f;
+  background-color: #0069d9;
   color: white; }
   .navbar .navbar-brand a, .navbar .navbar-brand button {
     display: inline;
@@ -187,3 +211,8 @@ body {
     @media (max-width: 768px) {
       .navbar .navbar-brand .app-motto {
         display: none; } }
+
+form.custom-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 3%; }

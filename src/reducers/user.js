@@ -1,14 +1,16 @@
 import UserActions from '../actions'
-import { lstat } from 'fs';
 
 const initialState = {
     user: {
-        firstname: '',
-        lastname: '',
-        credentials: {
+        data: undefined,
+        auth: {
+            isAuthorized: false,
+            authorizedBy: undefined,
+            local: {
+                isAuthorized: false
+            },
             google: {
-                tokenId: '',
-                auth: ''
+                isAuthorized: false
             }
         }
     }
@@ -16,12 +18,25 @@ const initialState = {
 
 export default function user(state = initialState, action){
     switch (action.type) {
-        case UserActions.ACTION:
-            console.log('here!!!!!!')
-            break;
-    
+        case UserActions.SIGNUP_LOCAL:
+            return state;
+
+        case UserActions.LOGIN_LOCAL:
+            return Object.assign({}, state, {
+                user: {
+                    data : action.payload.data,
+                    auth : { 
+                        isAuthorized: true,
+                        authorizedBy: "LOCAL",
+                        local: { 
+                            isAuthorized: true
+                        } 
+                    }
+                }
+            })
+
         default:
-            break;
+            return state;
     }
 }
 

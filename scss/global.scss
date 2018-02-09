@@ -30,9 +30,10 @@ $bluegray:(
   #263238  // 900
 );
 
-$primary: #e8eaf6;
+
+$primary: white;
 $primary-light: white;
-$primary-dark: #303f9f;
+$primary-dark: #0069d9;
 $primary-dark-text: white;
 $secondary: #ff7043;
 $text-color: #37474f;
@@ -41,11 +42,12 @@ $small-font: 9pt;
 $regular-font: 12pt;
 $header-font: 14pt;
 $logo-font: 16pt;
-$theme: 'dark'; // 'light'
+$googleColor: #de5f54;
+$theme: 'light'; // 'light'
 
 @mixin shadeTheme($theme){
-    @if ($theme == 'dark'){
-        background-color: rgba(0,0,0,0.1);
+    @if ($theme == 'light'){
+        background-color: rgba(0,0,0,0.07);
     }
     @else
     {
@@ -57,3 +59,9 @@ $screen-width-phone: 576px;
 $screen-width-tablet: 768px;
 $screen-width-laptop: 992px;
 $screen-width-wide: 1200px;
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+

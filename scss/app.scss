@@ -47,6 +47,17 @@ body {
 
 }
 
+.btn-google {
+  color: white;
+  background-color: $googleColor;
+  border-color: $googleColor;
+
+  &:hover, &:active, &:focus {
+    background-color: $googleColor + #100;
+    border-color: $googleColor + #100;
+  }
+}
+
 .genres-container{
   display: flex;
   flex-direction: column;

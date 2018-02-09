@@ -9,10 +9,9 @@ import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
-import rootReducer from './reducers/index'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import GenresPage from './components/__genres';
-import ArtistsPage from './components/__artists';
+import rootReducer from './reducers/index'
 
 import App from './App'
 
@@ -31,7 +30,9 @@ class Root extends Component{
         return(
             <Provider store={store}>
                 <Router history={history}>
-                    <App/>
+                    <MuiThemeProvider>
+                        <App/>
+                    </MuiThemeProvider>
                 </Router>
             </Provider> 
         )

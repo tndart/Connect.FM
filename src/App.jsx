@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 // Components imports
 import NavigationBar from './components/navigation-bar/navigation-bar'
-import LoginPage from './components/login'
+import UserPage from './components/__user'
 import GenresPage from './components/__genres'
 import ArtistsPage from './components/__artists'
 import AboutPage from './components/__about'
@@ -16,10 +16,10 @@ const routes = [
         "name": "1. Who we are",
         "link": "/"
     }, {
-        "name": "Login",
-        "link": "/login"
+        "name": "2. Login",
+        "link": "/user"
     }, {
-        "name": "2. Select your music",
+        "name": "3. Select your music",
         "link": "/genres"
     }, {
         "name": "Contact",
@@ -47,10 +47,10 @@ export default class App extends Component {
                     appName={appName}
                     appMotto={appMotto}
                     routes={routes}/>
-                    
+                
                 <Switch>
                     <Route exact path='/' component={AboutPage}/>
-                    <Route path='/login' component={LoginPage}/>
+                    <Route path='/user' component={UserPage}/>
                     <Route path='/genres' component={GenresPage}/>
                     <Route path='/artists' component={ArtistsPage}/>
                 </Switch>

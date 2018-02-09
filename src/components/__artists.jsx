@@ -23,7 +23,7 @@ class ArtistsPage extends Component {
                         <Link style={{float: "left"}} className="btn btn-primary" to="/genres"> Back </Link>
                     </div>
                     <div className="col align-self-center">
-                    <h4 style={{textAlign: "center"}}> Pick your artists: </h4>
+                    <h4 style={{textAlign: "center"}}> Artists: </h4>
                     <br/>
                     </div>
                     <div className="col">
