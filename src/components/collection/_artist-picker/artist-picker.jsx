@@ -17,21 +17,18 @@ class ArtistPicker extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, tagsChecked, tagsUnchecked } = this.props
+        const { dispatch } = this.props
 
-        if ((tagsChecked && tagsChecked.length > 0) || (tagsUnchecked && tagsUnchecked.length > 0)) {
-            console.info('ArtistPicker:: componentDidMount')
-            dispatch(getTopArtistsByTags(tagsChecked, tagsUnchecked))
-        }
+        dispatch(getTopArtistsByTags())
     }
 
     componentDidUpdate(prevProps, prevState){      
-        if (!this.props.tagsChecked.equals(prevProps.tagsChecked) ||
+        /*if (!this.props.tagsChecked.equals(prevProps.tagsChecked) ||
             !this.props.tagsUnchecked.equals(prevProps.tagsUnchecked)){
                 console.info('ArtistPicker:: componentDidUpdate')
                 const { dispatch, tagsChecked, tagsUnchecked } = this.props
                 dispatch(getTopArtistsByTags(tagsChecked, tagsUnchecked))
-        }
+        }*/
     }
 
     clickHandler(e, props) {
@@ -42,8 +39,8 @@ class ArtistPicker extends Component {
 
     render() {
         const showed = () => {
-            if (this.props.artists && this.props.artists.length > 0) {
-                return ( <ImagePicker array={this.props.artists} onClick={this.clickHandler}></ImagePicker> )
+            if (this.props.list && this.props.list.length > 0) {
+                return ( <ImagePicker array={this.props.list} onClick={this.clickHandler}></ImagePicker> )
             }
             else {
                 return ( <div> Please pick some genres at <Link to='/genres'> Genre page </Link> </div> )
@@ -52,6 +49,7 @@ class ArtistPicker extends Component {
 
         return (
             <div>
+                { this.props.list && this.props.list.length }
                 { showed() }
             </div>
         )
@@ -60,13 +58,13 @@ class ArtistPicker extends Component {
 
 function mapStateToProps(state) {
     const artists = state.artists.list
-    const tagsChecked = state.tags.topTags.filter(tag => tag.isChecked === true)
-    const tagsUnchecked = state.tags.topTags.filter(tag => tag.isChecked === false)
+    const tagsChecked = state.tags.topTags.filter(tag => tag.isChecked === true).map(el => el.name)
+    const list = artists.filter(artist => {
+        return artist.tags.some(artistTag => tagsChecked.includes(artistTag.name))
+    })
     
     return {
-        artists,
-        tagsChecked,
-        tagsUnchecked
+        list
     }
 }
 

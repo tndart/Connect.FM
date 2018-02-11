@@ -7,19 +7,9 @@ export const TOP_ARTISTS_REQ = 'TOP_ARTISTS_REQ'
 export const TOP_ARTISTS_RES = 'TOP_ARTISTS_RES'
 export const TOP_ARTISTS_ERR = 'TOP_ARTISTS_ERR'
 export const ARTISTS_CHECKING_TOGGLE = 'ARTISTS_CHECKING_TOGGLE'
-export const REMOVE_ARTISTS = 'REMOVE_ARTISTS'
+export const REMOVE_FROM_TOPARTISTS = 'REMOVE_FROM_TOPARTISTS'
 
 export const ARTISTS_BY_TAG_URL = `http://localhost:8080/tag/{tag}/artists`
-
-const artists = [
-        {"_id": "1", "name": "Bruno Mars 1", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f", "isChecked": true},
-        {"_id": "2", "name": "Bruno Mars 2", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-        {"_id": "3", "name": "Bruno Mars 3", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-        {"_id": "4", "name": "Bruno Mars 4", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-        {"_id": "5", "name": "Bruno Mars 5", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-        {"_id": "6", "name": "Bruno Mars 6", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-        {"_id": "7", "name": "Bruno Mars 7", "src": "https://i.scdn.co/image/500cdc11764fcce21eaaa543b37cc83f043f038f"},
-];
 
 function Request(type, tags, skip, limit) {
     return {
@@ -46,50 +36,45 @@ function Response(type, payload) {
     }
 }
 
-export function getTopArtistsByTags(tagsChecked, tagsUnchecked, skip=0, limit=30) {
-    return dispatch => {
-        dispatch({type: REMOVE_ARTISTS, tagsUnchecked})
+export function getTopArtistsByTags(skip=0, limit=30) {
+    return (dispatch, getState) => {
 
-        dispatch(Request(TOP_ARTISTS_REQ, tagsChecked, skip, limit))
-        
+        // remove artists that unchecked.
+        // if (not checked yet) Get top artists of tags that checked from API.
         var artists = []
-        var index = 0;
-        tagsChecked.forEach(tag => {
-            fetch(ARTISTS_BY_TAG_URL.replace('{tag}', tag.name)).then(response => response.json(), 
-            err => {
-                dispatch(Error(TOP_ARTISTS_ERR,err))
-            }).then(json => {
-                index++;
-                if (json) {
-                    artists = artists.concat(json);
+        var index = 0
+        const allArtists  = getState().artists.list
+        const tagsChecked = getState().tags.topTags.filter(tag => tag.isChecked === true)
+
+        if (tagsChecked && tagsChecked.length > 0) {
+            tagsChecked.forEach(tag => {
+                const list = allArtists.filter(artist => artist.tags.filter(artistTag => artistTag.name === tag.name).length > 0)
+                
+                if(!list || list.length < limit) {      
+                    dispatch(Request(TOP_ARTISTS_REQ, tagsChecked, skip, limit))
+
+                    fetch(ARTISTS_BY_TAG_URL.replace('{tag}', tag.name))
+                    .then(
+                        response => response.json(), 
+                        err => {
+                            dispatch(Error(TOP_ARTISTS_ERR,err))
+                        })
+                        .then(json => {
+                            if (json) {
+                                artists = artists.concat(json)
+                            }
+                            index++;
+
+                            if(index >= tagsChecked.length) {
+                                return dispatch(Response(TOP_ARTISTS_RES, artists))
+                            }
+                        })
                 }
-
-                if(index >= tagsChecked.length) {
-                    return dispatch(Response(TOP_ARTISTS_RES, artists));
+                else {
+                    index++;
                 }
-            })
-        });
-
-    }
-}
-
-/* return dispatch => {
-        dispatch(Request(TAGS_TOP_REQ))
-        return fetch(TAGS_TOP_URL)
-            .then(
-                response => response.json(), 
-                err => {
-                    dispatch(Error(TAGS_TOP_ERR,err));
-                }
-            )
-            .then(json => dispatch(Received(TAGS_TOP_RES, json)))
-    }*/
-
-// Action Creators
-export function getDemo(){
-    return {
-        type: GET_DEMO,
-        payload: artists
+            });
+        }
     }
 }
 
