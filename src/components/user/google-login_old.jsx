@@ -1,3 +1,5 @@
+/* global gapi */
+
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login-component'; // https://github.com/kennetpostigo/react-google-login-component
 
@@ -5,22 +7,23 @@ import { GoogleLogin } from 'react-google-login-component'; // https://github.co
 {
     !this.state.userLogon && 
     <Container>
-            <Login google callback={this.loginCallback}>
             
-            </Login>
     </Container>
 }
 */
 
 /* UI component only , used for style a basic container in app  */
-class Login extends Component {
+class CustomGoogleLogin extends Component {
     constructor(props) {
         super(props);
 
         this.localStorageUpdated = this.localStorageUpdated.bind(this)
+        this.onClickHandler = this.onClickHandler.bind(this)
+        this.onLoadHandler = this.onLoadHandler.bind(this)
 
         this.state = {
-            status: null
+            status: null,
+            disabled: true
         };
     }
 
@@ -54,7 +57,7 @@ class Login extends Component {
         this.setState({status:value})
     }
 
-    responseGoogle(googleUser) {
+    responseGoogle(googleUser, profile) {
         var token = googleUser
             .getAuthResponse()
             .id_token;
@@ -67,39 +70,51 @@ class Login extends Component {
 
     }
 
-    googleLogin()
-    {
-        return (
-            <div>
-                <GoogleLogin
-                    socialId="771745660054-cm21cmfhgk3r2485qa0n7vmllonm0hjd.apps.googleusercontent.com"
-                    className="google-login-button"
-                    scope="profile"
-                    fetchBasicProfile={false}
-                    responseHandler={this.responseGoogle}
-                    buttonText="Login With Google"/>
-                    <div>
-                        {
-                            !this.state.status && this.props.callback()
-                        }
-                    </div>
+    onLoadHandler(){
+        const { socialId, scope, fetchBasicProfile } = this.props;
 
-            </div>
-        );
+        gapi.load('auth2', () => {
+            this.setState({
+              disabled: false
+            });
+            if (!gapi.auth2.getAuthInstance()) {
+              gapi.auth2.init({
+                client_id: socialId,
+                fetch_basic_profile: fetchBasicProfile,
+                scope: scope
+              });
+            }
+        })
+    }
+
+    onClickHandler(){
+        alert("gapi? " + gapi)
     }
 
     render() {
-        var googleLogin = null;
-        if (this.props.google) {
-            googleLogin = this.googleLogin();
-        }
 
         return (
             <div>
-                {googleLogin}
+                
+                <button className="btn btn-google" onClick={this.onClickHandler}>
+                    <i className="fab fa-google"></i> &nbsp;
+                    Signup By Google (SOON)
+                </button>
+
+                <script id="google-platform" src="https://apis.google.com/js/platform.js" onLoad={this.onLoadHandler}/>
+
             </div>
         )
     }
 }
 
-export default Login;
+export default CustomGoogleLogin;
+
+/*
+socialId="771745660054-cm21cmfhgk3r2485qa0n7vmllonm0hjd.apps.googleusercontent.com"
+className="btn btn-google"
+scope="profile"
+fetchBasicProfile={false}
+responseHandler={this.responseGoogle}
+buttonText="Login With Google">
+*/

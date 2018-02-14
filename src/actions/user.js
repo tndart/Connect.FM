@@ -6,12 +6,17 @@ const LOGIN_ENDPOINT = 'http://localhost:8080/user/login'
 // Actions
 export const SIGNUP_LOCAL = 'SIGNUP_LOCAL'
 export const LOGIN_LOCAL = 'LOGIN_LOCAL'
+export const SAVE_GOOGLE_USER = 'SAVE_GOOGLE_USER'
 
 function actionCreator(type, payload){
     return {
-        type: type,
-        payload: payload
+        type,
+        payload
     }
+}
+
+export function saveGoogleUser(user) {
+    return actionCreator(SAVE_GOOGLE_USER, user);
 }
 
 // Action creators

@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
+import GoogleLogin from './google-login'
+
 class UserSigninOptions extends Component{
 
     constructor(props) {
         super(props)
 
-        this.state = {
-        }
+        this.state = {}
     }
 
     render(){
@@ -21,10 +22,15 @@ class UserSigninOptions extends Component{
                     &nbsp; &nbsp;
                     <Link className="btn btn-primary" to="/user/signup">Signup</Link>
                     <br/> <br/>
-                    <button className="btn btn-google disabled" onClick={() => {}/*this.setState({stage: GOOGLE_SIGNUP})*/}> 
-                        <i className="fab fa-google"></i> &nbsp;
-                        Signup By Google (SOON)
-                    </button> 
+
+                    <GoogleLogin 
+                        socialId="771745660054-cm21cmfhgk3r2485qa0n7vmllonm0hjd.apps.googleusercontent.com"
+                        className="btn btn-google"
+                        scope="profile"
+                        fetchBasicProfile={true}>
+                            <i className="fab fa-google"></i> &nbsp;
+                            Login With Google
+                    </GoogleLogin>
                 </div>
             </div>
         )

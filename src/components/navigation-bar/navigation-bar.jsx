@@ -4,6 +4,8 @@ import { NavLink, Link, Route } from 'react-router-dom'
 import { setValueOrDefault } from '../../util/componentExtender.js'
 import '../../stylesheets/app.css';
 
+import UserIcon from '../user/user-icon'
+
 class NavigationBar extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +26,7 @@ class NavigationBar extends Component {
 
         this.state.homeLink = (this.state.routes[0] !== undefined
             ? this.state.routes[0].link
-            : this.state.homeLink);
+            : this.state.homeLink)
     }
 
     showSearchBar() {
@@ -41,6 +43,8 @@ class NavigationBar extends Component {
 
     }
 
+
+
     render() {
 
         var searchBar = null;
@@ -50,78 +54,49 @@ class NavigationBar extends Component {
 
         return (
             <div className="container">
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top">
-                <button
-                    className="navbar-toggler navbar-toggler-left"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="navbar-brand">
-                    <a className="app-brand" href={this.state.homeLink}>{this.state.appName}</a>
-                    <div className="app-motto">
-                        {this.state.appMotto}
+                <nav className="navbar navbar-expand-md navbar-dark fixed-top">
+                    <button
+                        className="navbar-toggler navbar-toggler-left"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="navbar-brand">
+                        <a className="app-brand" href={this.state.homeLink}>{this.state.appName}</a>
+                        <div className="app-motto">
+                            {this.state.appMotto}
+                        </div>
                     </div>
-                </div>
-                <div></div>
 
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav m-auto">
-                        {this
-                            .state
-                            .routes
-                            .map((item, index) => {
-                                return (
-                                    <li key={index} className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-                                        <NavLink className="nav-link" to={item.link}>{item.name}</NavLink>
-                                    </li>
-                                )
-                            })
-}
-                    </ul>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav m-auto">
+                            {this
+                                .state
+                                .routes
+                                .map((item, index) => {
+                                    return (
+                                        <li key={index} className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                                            <NavLink className="nav-link" to={item.link}>{item.name}</NavLink>
+                                        </li>
+                                    )
+                                })
+    }
+                        </ul>
 
-                    {searchBar}
-                </div>
-            </nav>
+                        {searchBar}
+                    </div>
 
+                    <div className="navbar-nav pull-right">
+                        <UserIcon></UserIcon>
+                    </div>
+                </nav>
             </div>
         )
     }
 }
 
 export default NavigationBar;
-
-/*
-<nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-                  <div className="navbar-brand">
-                      <a className="navbar-brand" href={this.state.homeLink}>{this.state.appName}</a>
-                      <div className="appmotto"> {this.state.appMotto} </div>
-                  </div>
-                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-
-                  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav m-auto">
-                        {
-                            this.state.routes.map((item, index) => {
-                                return (
-                                    <li key={index} className="nav-item">
-                                        <a className="nav-link" href={item.link}>{item.name}</a>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                      <button className="btn btn-outline-success my-2 my-sm-0 btn-disabled" type="submit" disabled>Search</button>
-                    </form>
-                  </div>
-                </nav>
-
-*/

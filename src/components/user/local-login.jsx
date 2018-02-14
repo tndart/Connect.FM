@@ -19,7 +19,7 @@ class LocalLogin extends Component {
     }
 
     ifLoggedIn() {
-        if (this.props.user.auth && this.props.user.auth.isAuthorized){
+        if (this.props.auth && this.props.auth.isAuthorized){
             return (<Redirect to='/genres'/>)
         }
     }
@@ -69,10 +69,10 @@ class LocalLogin extends Component {
 }
 
 function mapStateToProps(state) {
-    const { user } = state.user
+    const { auth } = state.user
     
     return {
-        user 
+        auth 
     }
 }
 

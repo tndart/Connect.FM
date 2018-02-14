@@ -211,6 +211,13 @@ body {
     @media (max-width: 768px) {
       .navbar .navbar-brand .app-motto {
         display: none; } }
+  .navbar .hidden {
+    display: none; }
+
+.user-profile-pic {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%; }
 
 form.custom-form {
   display: flex;
