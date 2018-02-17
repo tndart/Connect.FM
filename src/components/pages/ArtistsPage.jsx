@@ -3,8 +3,8 @@
 import React, { Component } from 'react'
 import Link from 'react-router-dom/Link'
 
-import Container from './container'
-import { ArtistPicker } from './collection/index';
+import Container from '../container'
+import { ArtistPicker } from '../collection/index';
 
 /* UI component only , used for style a basic container in app  */
 class ArtistsPage extends Component {

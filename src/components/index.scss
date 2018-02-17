@@ -8,3 +8,19 @@ form.custom-form {
     flex-direction: column;
     margin: 0px 3%;
 }
+
+.custom-container {
+    position: relative;
+    //top: 65px;
+    padding: 2%;
+    margin-bottom: 10px;
+    @include shadeTheme($theme);
+    @extend %border-radius;
+
+    @media (min-width: $screen-width-tablet){
+        width: 90%;
+    }
+    @media (max-width: $screen-width-tablet){
+        width: 97%;
+    }
+}

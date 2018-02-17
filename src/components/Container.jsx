@@ -11,9 +11,11 @@ class Container extends Component {
     }
 
     render() {
+        var { children, className, style } = this.props
+        if (!className) { className = '' }
         return (
-            <div className={'container-fluid custom-container ' + this.props.className}>
-                {this.props.children}
+            <div style={{style}} className={'container-fluid custom-container ' + className}>
+                { children }
             </div>
         )
     }

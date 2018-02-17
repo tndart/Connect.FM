@@ -14,22 +14,6 @@ body {
   color: $text_color;
 }
 
-.custom-container {
-  position: relative;
-  top: 65px;
-  padding: 10px;
-  margin-bottom: 10px;
-  @include shadeTheme($theme);
-  @extend %border-radius;
-
-  @media (min-width: $screen-width-tablet){
-    width: 90%;
-  }
-  @media (max-width: $screen-width-tablet){
-      width: 97%;
-  }
-}
-
 /* Login */ 
 .google-login-button{
   background-color: nth($bluegray,10);

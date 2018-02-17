@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Link from 'react-router-dom/Link'
 
-import Container from './container'
-import { BadgePicker } from './collection/index'
+import Container from '../container'
+import { BadgePicker } from '../collection/index'
 
 /* UI component only , used for style a basic container in app  */
 class GenresPage extends Component {

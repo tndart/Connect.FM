@@ -3,10 +3,11 @@ import { Switch, Route } from 'react-router-dom'
 
 // Components imports
 import NavigationBar from './components/navigation-bar/navigation-bar'
-import UserPage from './components/__user'
-import GenresPage from './components/__genres'
-import ArtistsPage from './components/__artists'
-import AboutPage from './components/__about'
+import HomePage from './components/pages/HomePage'
+import GenresPage from './components/pages/GenresPage'
+import ArtistsPage from './components/pages/ArtistsPage'
+import AboutPage from './components/pages/AboutPage'
+import IntroPage from './components/pages/IntroPage';
 
 // Consts Declarations
 const appName = 'Connect.FM'
@@ -43,21 +44,20 @@ export default class App extends Component {
 
         return (
             <div>
-                <NavigationBar
-                    appName={appName}
-                    appMotto={appMotto}
-                    routes={routes}/>
-                
                 <Switch>
-                    <Route exact path='/' component={AboutPage}/>
-                    <Route path='/user' component={UserPage}/>
+                    <Route exact path='/' component={HomePage}/>
+                    <Route path='/about' component={AboutPage}/>
                     <Route path='/genres' component={GenresPage}/>
                     <Route path='/artists' component={ArtistsPage}/>
+                    <Route path='/user' component={IntroPage}/>
                 </Switch>
-               
-                
             </div>
         )
     }
 }
 
+/* 
+<NavigationBar
+    appName={appName}
+    appMotto={appMotto}
+    routes={routes}/>*/
