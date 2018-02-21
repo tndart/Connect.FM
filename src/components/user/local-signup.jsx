@@ -4,7 +4,8 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { Chip, TextField, RaisedButton, DatePicker, SelectField, MenuItem } from 'material-ui'
 
-import { signup } from '../../actions/user'
+import { UserActions } from '../../actions/user'
+import { getHistory } from '../../util/helpers'
 
 function isEmpty(value){
     if ( value === null || value === undefined || value === '' )
@@ -83,14 +84,13 @@ class LocalSignup extends Component {
        flag = this.validation(user)
 
         if (flag)
-            dispatch(signup(user))
+            dispatch(UserActions.signup(user))
     }
 
     render() {
         return (
             <div className={'' + this.props.className}>
                             
-                <h4>Who are you</h4>
                 <form className="custom-form" onSubmit={this.handleSubmit}> 
                     <TextField
                         hintText="Enter your first name"
@@ -158,7 +158,7 @@ class LocalSignup extends Component {
                     <br/>
 
                     <div>
-                        <Link className="float-left" to='/user'><RaisedButton label="Back" primary></RaisedButton></Link>
+                        <RaisedButton className="float-left" label="Back" primary onClick={ getHistory().goBack }></RaisedButton>
                         <RaisedButton className="float-right" type="submit" label="Signup" primary/>
                     </div>
 

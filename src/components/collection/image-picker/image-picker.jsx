@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Image } from '../index'
 
-import { checkingToggle } from '../../../actions/artists';
-
 /* UI component only , used for style a basic container in app  */
-class ImagePicker extends Component {
+export default class ImagePicker extends Component {
     constructor(props) {
         super(props)
 
@@ -13,10 +11,6 @@ class ImagePicker extends Component {
     }
 
     clickHandler(e, props){
-        const { dispatch } = this.props
-        const newCheckedState = props.isChecked ? false : true;
-        dispatch(checkingToggle(props._id, newCheckedState));
-
         if (this.props.onClick) {
             this.props.onClick(e, props)
         }
@@ -54,5 +48,3 @@ class ImagePicker extends Component {
         )
     }
 }
-
-export default connect(null)(ImagePicker);

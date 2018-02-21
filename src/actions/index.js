@@ -1,11 +1,12 @@
 import * as PlaylistActions from './playlist'
-import * as ArtistActions from './artists'
+import * as ArtistActions from './artists.actions'
 import * as TagActions from './tags'
-import * as UserActions from './user'
+import * as User from './user'
 
 export default {
     ...PlaylistActions,
     ...ArtistActions,
     ...TagActions,
-    ...UserActions
+    ...User.UserActions,
+    ...User.UserConstants
 }

@@ -2,16 +2,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Route, Redirect, Switch } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import Container from '../container'
 
 import GenresPage from './GenresPage'
-import IntroPage from './IntroPage'
+import LoginPage from './LoginPage'
 
 import LocalSignup from '../user/local-signup'
 import LocalLogin from '../user/local-login'
-import UserSigninOptions from '../user/user-signin-options'
 
 const LOCAL_SIGNUP = 'LOCAL_SIGNUP'
 const GOOGLE_SIGNUP = 'GOOGLE_SIGNUP'
@@ -23,36 +22,25 @@ class HomePage extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-        }
-
+        this.state = {}
     }
 
     render() {
-
-        const ifLoggedIn = () => {
-            if (this.props.user.auth && this.props.user.auth.isAuthorized){
-                return ( 
-                    <Redirect to='/about'/>
-                )
-            }
-            else {
-                return ( 
-                    <IntroPage/>
-                 )
-            }
-        }
-
         return (
-            <div style={{ position: "relative" , top: "10px" }}>
-                { ifLoggedIn() }
+            <div>
+                {
+                    this.props.user.auth && this.props.user.auth.isAuthorized ?
+                        <Redirect to='/player'/> 
+                        : 
+                        <LoginPage/>
+                }
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    const { user } = state.user
+    const { user } = state
     
     return {
         user 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ImagePicker } from '../index';
-import { getTopArtistsByTags } from '../../../actions/artists'
+import ArtistActions from '../../../actions'
 import { Link } from 'react-router-dom'
 import util from '../../../util/componentExtender'
 
@@ -19,7 +19,7 @@ class ArtistPicker extends Component {
     componentDidMount() {
         const { dispatch } = this.props
 
-        dispatch(getTopArtistsByTags())
+        dispatch(ArtistActions.getTopArtistsByTags())
     }
 
     componentDidUpdate(prevProps, prevState){      
@@ -32,6 +32,10 @@ class ArtistPicker extends Component {
     }
 
     clickHandler(e, props) {
+        const { dispatch } = this.props
+        const newCheckedState = props.isChecked ? false : true;
+        dispatch(ArtistActions.checkingToggle(props._id, newCheckedState));
+
         if (this.props.onClick) {
             this.props.onClick(e);
         }

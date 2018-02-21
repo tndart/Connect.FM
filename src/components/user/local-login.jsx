@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-import { login } from '../../actions/user'
+import { UserActions } from '../../actions/user'
+import { getHistory } from '../../util/helpers'
 
 /* UI component only , used for style a basic container in app  */
 class LocalLogin extends Component {
@@ -32,7 +33,7 @@ class LocalLogin extends Component {
             auth: { local: { password : e.target.password.value } }
         }
         
-        dispatch(login(user))
+        dispatch(UserActions.login(user))
     }
 
     render() {
@@ -56,7 +57,7 @@ class LocalLogin extends Component {
                     </div>
                     <div className="row mx-auto" style={{ marginTop: "20px" }}>
                         <div className="col">
-                            <Link className="btn btn-primary float-left" to='/user'>Back</Link>
+                            <button className="btn btn-primary" onClick={ getHistory().goBack }>Back</button>
                         </div>
                         <div className="col">
                             <button type="submit" className="btn btn-primary float-right">Login</button>

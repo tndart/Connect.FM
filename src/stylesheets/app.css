@@ -206,6 +206,11 @@ body {
   height: 2em;
   border-radius: 50%; }
 
+/* Pages style */
+.login-page-container .local-login-container {
+  width: 80%;
+  margin: 0 auto; }
+
 form.custom-form {
   display: flex;
   flex-direction: column;
@@ -213,6 +218,7 @@ form.custom-form {
 
 .custom-container {
   position: relative;
+  top: 65px;
   padding: 2%;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.07); }

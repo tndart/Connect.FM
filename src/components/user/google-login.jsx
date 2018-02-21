@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { saveGoogleUser } from '../../actions/user'
+import { UserActions } from '../../actions/user'
 
 class GoogleLogin extends React.Component {
 
@@ -24,37 +24,38 @@ class GoogleLogin extends React.Component {
         // Inject the google platform script into html document
         // and init the gapi.auth2
         ((d, s, id, callback) => {
-        var js, gs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { 
-            this.setState({
-            disabled: false
-            });
-        } else {
-            js = d.createElement(s); 
-            js.id = id;
-            js.src = 'https://apis.google.com/js/platform.js';
-            gs.parentNode.insertBefore(js, gs);
-            js.onload = callback;
-        }
-        })(document, 'script', 'google-platform', () => {
-        gapi.load('auth2', () => {
-            this.setState({
-            disabled: false
-            });
-            if (!gapi.auth2.getAuthInstance()) {
-            gapi.auth2.init({
-                client_id: socialId,
-                fetch_basic_profile: fetchBasicProfile,
-                scope: scope
-            });
+        
+            var js, gs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { 
+                this.setState({
+                disabled: false
+                });
+            } else {
+                js = d.createElement(s); 
+                js.id = id;
+                js.src = 'https://apis.google.com/js/platform.js';
+                gs.parentNode.insertBefore(js, gs);
+                js.onload = callback;
             }
-        });
+        })(document, 'script', 'google-platform', () => {
+            gapi.load('auth2', () => {
+                this.setState({
+                disabled: false
+                });
+                if (!gapi.auth2.getAuthInstance()) {
+                gapi.auth2.init({
+                    client_id: socialId,
+                    fetch_basic_profile: fetchBasicProfile,
+                    scope: scope
+                });
+                }
+            });
         });
     }
 
     clickHandler () {
         const auth2 = gapi.auth2.getAuthInstance();
-        auth2.signIn().then( googleUser => this.props.dispatch(saveGoogleUser(googleUser)) )
+        auth2.signIn().then( googleUser => this.props.dispatch(UserActions.saveGoogleUser(googleUser)) )
     }
 
     render () {

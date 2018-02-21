@@ -1,7 +1,8 @@
 import UserActions from '../actions'
 
-const initialState = {
-    user: {
+let localStorageState = JSON.parse(localStorage.getItem('connect-fm-user'));
+const initialState = localStorageState ? localStorageState : 
+    {
         data: undefined,
         auth: {
             isAuthorized: false,
@@ -14,7 +15,6 @@ const initialState = {
             }
         }
     }
-};
 
 export default function user(state = initialState, action){
     switch (action.type) {
@@ -22,7 +22,7 @@ export default function user(state = initialState, action){
             return state;
 
         case UserActions.LOGIN_LOCAL:
-            return Object.assign({}, state, {
+            const newLocalState = {
                 data : action.payload.data,
                 auth : { 
                     isAuthorized: true,
@@ -31,21 +31,22 @@ export default function user(state = initialState, action){
                         isAuthorized: true
                     } 
                 }
-            })
+            }
+
+            localStorage.setItem('connect-fm-user', JSON.stringify(newLocalState))
+
+            return Object.assign({}, state, newLocalState)
 
         case UserActions.SAVE_GOOGLE_USER:
             const profile = action.payload.getBasicProfile()
-
-            const data = {
-                id: profile.getId(),
-                username: profile.getEmail(),
-                firstname: profile.getGivenName(),
-                lastname: profile.getFamilyName(),
-                pic: profile.getImageUrl(),
-            }
-
-            return Object.assign({}, state, {
-                data,
+            const newGoogleState = {
+                data: {
+                    id: profile.getId(),
+                    username: profile.getEmail(),
+                    firstname: profile.getGivenName(),
+                    lastname: profile.getFamilyName(),
+                    pic: profile.getImageUrl(),
+                },
                 auth : { 
                     isAuthorized: true,
                     authorizedBy: "GOOGLE",
@@ -54,11 +55,15 @@ export default function user(state = initialState, action){
                     },
                     google: {
                         isAuthorized: true,
-                        googleId: data.id,
+                        googleId: profile.getId(),
                         googleToken: action.payload.getAuthResponse().id_token
                     }
                 }
-            })
+            }
+
+            localStorage.setItem('connect-fm-user', JSON.stringify(newGoogleState))
+
+            return Object.assign({}, state, newGoogleState)
 
         default:
             return state;

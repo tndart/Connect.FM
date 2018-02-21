@@ -13,6 +13,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import rootReducer from './reducers/index'
 
+import { attachHistory } from './util/helpers'
+
 import App from './App'
 
 const loggerMiddleware = createLogger()
@@ -23,7 +25,9 @@ const store = createStore(
         loggerMiddleware
     )
 )
+
 const history = createBrowserHistory()
+attachHistory(history)
 
 class Root extends Component{
     render(){
