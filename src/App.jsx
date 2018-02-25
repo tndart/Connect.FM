@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 
 // Components imports
 import NavigationBar from './components/navigation-bar/NavigationBar'
-import NavbarRightSide from './components/navigation-bar/NavbarRightSide'
 import AppBar from 'material-ui/AppBar'
 import { HomePage, GenresPage, ArtistsPage, AboutPage, LoginPage, SignupPage, PlayerPage } from './components/pages'
 import './stylesheets/app.css';
@@ -60,8 +59,3 @@ export default class App extends Component {
         )
     }
 }
-
-/*appName={appName}
-                    appMotto={appMotto}
-                    routes={routes}
-                    rightSide={ <NavbarRightSide/> }*/

@@ -85,7 +85,7 @@ class NavbarAccount extends Component {
                     <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                         <Paper>
                             <MenuList role="menu">
-                                <MenuItem onClick={this.handleClose}>Preferences</MenuItem>
+                                <MenuItem disabled onClick={this.handleClose}>Preferences</MenuItem>
                                 <MenuItem onClick={this.logoutHandler.bind(this)}>Logout</MenuItem>
                             </MenuList>
                         </Paper>
