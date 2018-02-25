@@ -34,3 +34,15 @@
     }
   }
   
+
+button.non-button {
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+img.profile-pic{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}

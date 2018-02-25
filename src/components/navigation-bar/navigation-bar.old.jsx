@@ -4,9 +4,7 @@ import { NavLink, Link, Route } from 'react-router-dom'
 import { setValueOrDefault } from '../../util/componentExtender.js'
 import '../../stylesheets/app.css';
 
-import UserIcon from '../user/user-icon'
-
-class NavigationBar extends Component {
+class NavigationBarOld extends Component {
     constructor(props) {
         super(props);
 
@@ -91,7 +89,7 @@ class NavigationBar extends Component {
                     </div>
 
                     <div className="navbar-nav pull-right">
-                        <UserIcon></UserIcon>
+                        { this.props.rightSide ? this.props.rightSide : "" }
                     </div>
                 </nav>
             </div>
@@ -99,4 +97,4 @@ class NavigationBar extends Component {
     }
 }
 
-export default NavigationBar;
+export default NavigationBarOld;

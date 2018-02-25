@@ -7,11 +7,13 @@ const LOGIN_ENDPOINT = 'http://localhost:8080/user/login'
 const SIGNUP_LOCAL = 'SIGNUP_LOCAL'
 const LOGIN_LOCAL = 'LOGIN_LOCAL'
 const SAVE_GOOGLE_USER = 'SAVE_GOOGLE_USER'
+const LOGOUT = 'LOGOUT'
 
 export const UserConstants = {
     SIGNUP_LOCAL,
     LOGIN_LOCAL,
-    SAVE_GOOGLE_USER
+    SAVE_GOOGLE_USER,
+    LOGOUT
 }
 
 // Action Creators
@@ -25,7 +27,8 @@ function actionCreator(type, payload){
 export const UserActions = {
     saveGoogleUser,
     signup,
-    login
+    login,
+    logout
 }
 
 function saveGoogleUser(user) {
@@ -47,7 +50,7 @@ function signup(user){
                 response => response.json(),
                 err => console.log(err.message)
             ).then(json => {
-                dispatch(actionCreator(SIGNUP_LOCAL, json))
+                return dispatch(actionCreator(SIGNUP_LOCAL, json))
             })
         }
     }
@@ -67,9 +70,15 @@ function login(user){
             response => response.json(),
             err => console.log(err.message)
         ).then(json => {
-            dispatch(actionCreator(LOGIN_LOCAL, json))
+            return dispatch(actionCreator(LOGIN_LOCAL, json))
         })
         
+    }
+}
+
+function logout(){
+    return dispatch => {
+        return dispatch(actionCreator(LOGOUT))
     }
 }
 

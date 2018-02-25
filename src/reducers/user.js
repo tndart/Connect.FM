@@ -1,27 +1,30 @@
-import UserActions from '../actions'
+import { UserConstants } from '../actions/user'
 
-let localStorageState = JSON.parse(localStorage.getItem('connect-fm-user'));
-const initialState = localStorageState ? localStorageState : 
-    {
-        data: undefined,
-        auth: {
-            isAuthorized: false,
-            authorizedBy: undefined,
-            local: {
-                isAuthorized: false
-            },
-            google: {
-                isAuthorized: false
-            }
+let localStorageState = JSON.parse(localStorage.getItem('connect-fm-user'))
+
+const defaultInitialState = {
+    data: undefined,
+    auth: {
+        isAuthorized: false,
+        authorizedBy: undefined,
+        local: {
+            isAuthorized: false
+        },
+        google: {
+            isAuthorized: false
         }
     }
+}
+
+const initialState = localStorageState ? localStorageState : defaultInitialState
+    
 
 export default function user(state = initialState, action){
     switch (action.type) {
-        case UserActions.SIGNUP_LOCAL:
+        case UserConstants.SIGNUP_LOCAL:
             return state;
 
-        case UserActions.LOGIN_LOCAL:
+        case UserConstants.LOGIN_LOCAL:
             const newLocalState = {
                 data : action.payload.data,
                 auth : { 
@@ -37,7 +40,7 @@ export default function user(state = initialState, action){
 
             return Object.assign({}, state, newLocalState)
 
-        case UserActions.SAVE_GOOGLE_USER:
+        case UserConstants.SAVE_GOOGLE_USER:
             const profile = action.payload.getBasicProfile()
             const newGoogleState = {
                 data: {
@@ -63,7 +66,12 @@ export default function user(state = initialState, action){
 
             localStorage.setItem('connect-fm-user', JSON.stringify(newGoogleState))
 
-            return Object.assign({}, state, newGoogleState)
+            return Object.assign({}, state, newGoogleState);
+
+        case UserConstants.LOGOUT:
+            localStorage.removeItem('connect-fm-user');
+        
+            return Object.assign({}, state, defaultInitialState);
 
         default:
             return state;

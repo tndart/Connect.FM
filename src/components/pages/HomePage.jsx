@@ -4,18 +4,8 @@ import { connect } from 'react-redux'
 
 import { Redirect } from 'react-router-dom'
 
-import Container from '../container'
-
-import GenresPage from './GenresPage'
 import LoginPage from './LoginPage'
-
-import LocalSignup from '../user/local-signup'
-import LocalLogin from '../user/local-login'
-
-const LOCAL_SIGNUP = 'LOCAL_SIGNUP'
-const GOOGLE_SIGNUP = 'GOOGLE_SIGNUP'
-const LOCAL_LOGIN = 'LOCAL_LOGIN'
-const DEFAULT = 'DEFAULT'
+import PlayerPage from './PlayerPage'
 
 /* UI component only , used for style a basic container in app  */
 class HomePage extends Component {
@@ -30,9 +20,9 @@ class HomePage extends Component {
             <div>
                 {
                     this.props.user.auth && this.props.user.auth.isAuthorized ?
-                        <Redirect to='/player'/> 
+                        <PlayerPage/>
                         : 
-                        <LoginPage/>
+                        <LoginPage/> 
                 }
             </div>
         )

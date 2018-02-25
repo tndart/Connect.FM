@@ -201,6 +201,16 @@ body {
   .navbar .hidden {
     display: none; }
 
+button.non-button {
+  border: 0;
+  outline: none;
+  background: transparent; }
+
+img.profile-pic {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; }
+
 .user-profile-pic {
   width: 2em;
   height: 2em;
@@ -218,7 +228,7 @@ form.custom-form {
 
 .custom-container {
   position: relative;
-  top: 65px;
+  top: 75px;
   padding: 2%;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.07); }

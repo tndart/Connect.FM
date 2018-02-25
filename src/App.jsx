@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // Components imports
-import NavigationBar from './components/navigation-bar/navigation-bar'
-import HomePage from './components/pages/HomePage'
-import GenresPage from './components/pages/GenresPage'
-import ArtistsPage from './components/pages/ArtistsPage'
-import AboutPage from './components/pages/AboutPage'
-import LoginPage from './components/pages/LoginPage'
-import SignupPage from './components/pages/SignupPage';
+import NavigationBar from './components/navigation-bar/NavigationBar'
+import NavbarRightSide from './components/navigation-bar/NavbarRightSide'
+import AppBar from 'material-ui/AppBar'
+import { HomePage, GenresPage, ArtistsPage, AboutPage, LoginPage, SignupPage, PlayerPage } from './components/pages'
+import './stylesheets/app.css';
 
 // Consts Declarations
 const appName = 'Connect.FM'
@@ -45,10 +43,7 @@ export default class App extends Component {
 
         return (
             <div>
-                <NavigationBar
-                    appName={appName}
-                    appMotto={appMotto}
-                    routes={routes}/>
+                <NavigationBar/>
 
                 <Switch>
                     <Route exact path='/' component={HomePage}/>
@@ -59,9 +54,14 @@ export default class App extends Component {
                     <Route exact path='/user' component={LoginPage}/>
                     <Route exact path='/user/login' component={LoginPage}/>
                     <Route exact path='/user/signup' component={SignupPage}/>
+                    <Route exact path='/player' component={PlayerPage}/>
                 </Switch>
             </div>
         )
     }
 }
 
+/*appName={appName}
+                    appMotto={appMotto}
+                    routes={routes}
+                    rightSide={ <NavbarRightSide/> }*/

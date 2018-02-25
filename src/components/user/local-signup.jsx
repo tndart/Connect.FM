@@ -119,7 +119,7 @@ class LocalSignup extends Component {
                         errorText={ this.state.passwordagain.errorText }
                         type="password"
                         id="passwordagain"/>
-                    <SelectField 
+                    {/*<SelectField 
                         floatingLabelText="Gender"
                         value={this.state.gender}
                         onChange={ (e,i,val) => { this.setState({gender: val}) } }
@@ -160,7 +160,7 @@ class LocalSignup extends Component {
                     <div>
                         <RaisedButton className="float-left" label="Back" primary onClick={ getHistory().goBack }></RaisedButton>
                         <RaisedButton className="float-right" type="submit" label="Signup" primary/>
-                    </div>
+                    </div>*/}
 
                 </form>
             </div>
