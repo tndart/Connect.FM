@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { Chip, TextField, RaisedButton, DatePicker, SelectField, MenuItem } from 'material-ui'
 
-import { UserActions } from '../../actions/user'
+import UserActions from '../../actions'
 import { getHistory } from '../../util/helpers'
 
 function isEmpty(value){

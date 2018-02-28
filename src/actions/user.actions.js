@@ -16,19 +16,19 @@ export const UserConstants = {
     LOGOUT
 }
 
+export const UserActions = {
+    saveGoogleUser,
+    signup,
+    login,
+    logout
+}
+
 // Action Creators
 function actionCreator(type, payload){
     return {
         type,
         payload
     }
-}
-
-export const UserActions = {
-    saveGoogleUser,
-    signup,
-    login,
-    logout
 }
 
 function saveGoogleUser(user) {

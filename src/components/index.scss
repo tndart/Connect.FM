@@ -2,7 +2,7 @@
 @import './navigation-bar/navigation-bar';
 @import './user/user-icon';
 @import './pages/index';
-
+@import './music-player/index';
 
 form.custom-form {
     display: flex;
@@ -15,7 +15,7 @@ form.custom-form {
     top: 75px;
     padding: 2%;
     margin-bottom: 10px;
-    @include shadeTheme($theme);
+    background-color: rgba(255,255,255,0.7);
     @extend %border-radius;
 
     @media (min-width: $screen-width-tablet){
@@ -25,3 +25,4 @@ form.custom-form {
         width: 97%;
     }
 }
+

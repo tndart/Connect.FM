@@ -1,0 +1,54 @@
+button.player-action {
+    display: inline-block;
+    background-color: $secondary;
+    border-radius: 50%;
+    padding: 5px 8px;
+    cursor: pointer;
+    @extend %anti-button;
+    
+    &:hover {
+        @include HoverButton($secondary);
+    }
+
+    &:active {
+        $color: HoverButton($secondary);
+
+        @include HoverButton( $color + #111 );
+    }
+}
+
+.player-actions-container{
+    display: flex;
+    width: 250px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.player-actions {
+    width: 100%;
+}
+
+div.playlist-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2% 0px;
+    
+    ul.playlist-list {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        
+        li.playlist-track {
+            @include HoverButton( #fff );
+            margin: 0 auto;
+            margin-bottom: 1%;
+            border-radius: 15px;
+            width: 400px;
+            text-indent: 8%;
+        }   
+    }
+}
+
+.youtube-container {
+    margin: 0 auto;
+}

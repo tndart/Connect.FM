@@ -1,4 +1,4 @@
-import { UserConstants } from '../actions/user'
+import UserActions from '../actions'
 
 let localStorageState = JSON.parse(localStorage.getItem('connect-fm-user'))
 
@@ -17,14 +17,13 @@ const defaultInitialState = {
 }
 
 const initialState = localStorageState ? localStorageState : defaultInitialState
-    
 
 export default function user(state = initialState, action){
     switch (action.type) {
-        case UserConstants.SIGNUP_LOCAL:
+        case UserActions.SIGNUP_LOCAL:
             return state;
 
-        case UserConstants.LOGIN_LOCAL:
+        case UserActions.LOGIN_LOCAL:
             const newLocalState = {
                 data : action.payload.data,
                 auth : { 
@@ -40,7 +39,7 @@ export default function user(state = initialState, action){
 
             return Object.assign({}, state, newLocalState)
 
-        case UserConstants.SAVE_GOOGLE_USER:
+        case UserActions.SAVE_GOOGLE_USER:
             const profile = action.payload.getBasicProfile()
             const newGoogleState = {
                 data: {
@@ -68,7 +67,7 @@ export default function user(state = initialState, action){
 
             return Object.assign({}, state, newGoogleState);
 
-        case UserConstants.LOGOUT:
+        case UserActions.LOGOUT:
             localStorage.removeItem('connect-fm-user');
         
             return Object.assign({}, state, defaultInitialState);

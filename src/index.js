@@ -14,7 +14,7 @@ import indigo from 'material-ui/colors/indigo';
 import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
 
-import { attachHistory } from './util/helpers'
+import { attachHistory, attachStore } from './util/helpers'
 import rootReducer from './reducers/index'
 import App from './App'
 
@@ -27,6 +27,7 @@ const store = createStore(
         loggerMiddleware
     )
 )
+attachStore(store)
 
 const theme = createMuiTheme({
     palette: {

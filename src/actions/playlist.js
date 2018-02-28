@@ -22,7 +22,7 @@ function requestNewPlaylist(){
 function receivedNewPlaylist(json){
     return {
         type: NEW_PLAYLIST_RES,
-        playlist: json.children,
+        playlist: json,
         receivedAt: Date.now()
     }
 }
@@ -37,15 +37,35 @@ function errorNewPlaylist(err){
 
 export function fetchPlaylist(){
     return dispatch => {
+        setTimeout(() => {
+
+
         dispatch(getNewPlaylist())
         dispatch(requestNewPlaylist())
-        return fetch('http://api.jsonbin.io/b/5a59ca643dd7c64bccaa487f')
+        return fetch('https://api.jsonbin.io/b/5a9536b273fb541c61a5893d')
             .then(
                 response => response.json(), 
                 err => {
                     dispatch(errorNewPlaylist(err));
                 }
             )
-            .then(json => dispatch(receivedNewPlaylist(json)))
+            .then(json => {
+                if (json instanceof Array){
+                    var regexp = new RegExp(/\b.*=(.*)/)
+
+                    var promises = json.map(track => {
+                        return new Promise(resolve => {
+                            track.youtubeVideoID = regexp.exec(track.url)[1]
+                            resolve()
+                        })
+                    })
+                    
+                    Promise.all(promises).then(() => {
+                        dispatch(receivedNewPlaylist(json))
+                    })
+                }
+                
+            })
+        }, 3000)
     }
 }

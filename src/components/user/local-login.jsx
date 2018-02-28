@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-import { UserActions } from '../../actions/user'
+import UserActions from '../../actions'
 import { getHistory } from '../../util/helpers'
 
 /* UI component only , used for style a basic container in app  */

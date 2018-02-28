@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { UserActions } from '../../actions/user'
+import UserActions from '../../actions'
 
 class GoogleLogin extends React.Component {
 

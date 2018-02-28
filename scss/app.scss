@@ -4,11 +4,18 @@
   border-radius: 7px;
 }
 
+%anti-button {
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+
 /* General */ 
 body {
   width: 100%;
   min-width: 320px;
-  background-color: $primary;
+  background-color: $primary-light;
   background-size: cover;
   background-attachment: fixed;
   color: $text_color;
@@ -58,44 +65,10 @@ body {
   @media(min-width: 768px) {
     height: 200px;
   }
-  
-  .line-slider {
-    position: relative;
-    left: 0;
-    top:0;
-    width: 30000px;
-    opacity: 1;
-    display: block;
-    margin: 0;
-    padding: 0;
-
-  }
 }
 
-.MusicPlayer {
-  background-color: rgba(255,255,255, 0.1);
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.playerButton {
-  background-color: transparent;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 15px;
-  border: none;
-  outline: none;
-  border: 1px solid transparent;
-
-}
-
-.playerButton:focus {
-  outline: none;
-}
-
-.playerButton:hover {
-  border-radius: 20px;
-  background-color: rgba(255,255,255, 0.2);
+button.anti-button {
+  @extend %anti-button;
 }
 
 @import '../src/components/index';

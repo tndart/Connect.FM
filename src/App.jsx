@@ -28,18 +28,11 @@ const routes = [
 
 export default class App extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            userLogon: null,
-        };
-    }
-
-    loginCallback(){
-        console.log("callback " + JSON.parse(localStorage.getItem('googleLoginData')));
+        super(props)
+        this.state = {}
     }
 
     render() {
-
         return (
             <div>
                 <NavigationBar/>

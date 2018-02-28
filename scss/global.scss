@@ -30,10 +30,9 @@ $bluegray:(
   #263238  // 900
 );
 
-
-$primary: white;
-$primary-light: white;
-$primary-dark: #0069d9;
+$primary: #3f51b5;
+$primary-light: #e8eaf6;
+$primary-dark: #303f9f;
 $primary-dark-text: white;
 $secondary: #ff7043;
 $text-color: #37474f;
@@ -45,13 +44,23 @@ $logo-font: 16pt;
 $googleColor: #de5f54;
 $theme: 'light'; // 'light'
 
-@mixin shadeTheme($theme){
-    @if ($theme == 'light'){
-        background-color: rgba(0,0,0,0.07);
+@mixin HoverButton($background-color){
+    @if (lightness($background-color) < 40){
+        background-color: ($background-color + #555);
+        color: black;
     }
-    @else
-    {
-        background-color: rgba(255,255,255,0.1);
+    @else {
+        background-color: ($background-color - #555);
+        color: white;
+    }
+}
+
+@function HoverButton($background-color){
+    @if (lightness($background-color) < 40){
+        @return ($background-color + #555);
+    }
+    @else {
+        @return ($background-color - #555);
     }
 }
 
