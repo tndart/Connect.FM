@@ -58,10 +58,10 @@ class CustomGoogleLogin extends Component {
     }
 
     responseGoogle(googleUser, profile) {
-        var token = googleUser
+        let token = googleUser
             .getAuthResponse()
             .id_token;
-        var googleId = googleUser.getId();
+        let googleId = googleUser.getId();
 
         console.log({googleId});
         console.log({accessToken: token});

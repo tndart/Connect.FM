@@ -26,23 +26,10 @@ class MusicPlayer extends Component {
         this.onEndedVideo = this.onEndedVideo.bind(this)
     }    
 
-    componentWillMount(){
-        this.props.fetchPlaylist()
-    }
-
     componentDidMount() {
+        this.props.fetchPlaylist()
         this.props.play()
     }
-
-/*    componentDidUpdate(prevProps, prevState){
-        if (this.props.cursorIndex !== prevProps.cursorIndex || this.props.playlist !== prevProps.playlist){
-            if (this.props.playlist && this.props.playlist.length > this.props.cursorIndex){
-                /*this.setState({
-                    currVideo: this.props.playlist[this.props.cursorIndex].youtubeVideoID
-                })
-            }
-        }
-    }*/
 
     nextHandler(e){
         this.props.next()
@@ -79,7 +66,7 @@ class MusicPlayer extends Component {
                 </div>
                 <div>
                     <PlayerActionBar>
-                        <PlayerAction onClick={() =>  {  } }> 
+                        <PlayerAction disabled onClick={() =>  {  } }> 
                             <SkipPrevious/>
                         </PlayerAction>
                         <PlayerAction onClick={ this.play_pause.bind(this) }> 

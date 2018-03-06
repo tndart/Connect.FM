@@ -11,7 +11,7 @@ class Container extends Component {
     }
 
     render() {
-        var { children, className, style } = this.props
+        let { children, className, style } = this.props
         if (!className) { className = '' }
         return (
             <div style={{style}} className={'container-fluid custom-container ' + className}>

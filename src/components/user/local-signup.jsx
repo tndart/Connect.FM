@@ -35,7 +35,7 @@ class LocalSignup extends Component {
     }
 
     validation(user) {
-        var flag = true;
+        let flag = true;
     
         if (isEmpty(user.firstname)){
             this.setState({firstname: {errorText: "First Name is Required"}})
@@ -68,7 +68,7 @@ class LocalSignup extends Component {
     handleSubmit(e){
         e.preventDefault();
         const { dispatch } = this.props;
-        var user = {
+        let user = {
             firstname : e.target.firstname.value,
             lastname : e.target.lastname.value,
             username : e.target.username.value,
@@ -79,7 +79,7 @@ class LocalSignup extends Component {
             password : e.target.password.value,
             passwordagain: e.target.passwordagain.value
         }
-        var flag = true;
+        let flag = true;
 
        flag = this.validation(user)
 

@@ -10,7 +10,7 @@ class PlayerAction extends Component {
     }
 
     render() {
-        var { children, onClick, className } = this.props
+        let { children, onClick, className } = this.props
 
         return (
             <button onClick={onClick} className={'player-action ' + className}>

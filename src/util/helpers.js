@@ -1,6 +1,6 @@
 
-var _history;
-var _store;
+let _history;
+let _store;
 
 export function attachHistory(history){
     _history = history;

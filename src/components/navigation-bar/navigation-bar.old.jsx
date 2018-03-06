@@ -45,7 +45,7 @@ class NavigationBarOld extends Component {
 
     render() {
 
-        var searchBar = null;
+        let searchBar = null;
         if (this.state.searchBar) {
             searchBar = this.showSearchBar();
         }

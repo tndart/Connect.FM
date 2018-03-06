@@ -11,7 +11,7 @@ class Playlist extends Component {
     }
 
     render() {
-        var { playlist } = this.props
+        let { playlist } = this.props
 
         return (
             <div className="playlist-container">

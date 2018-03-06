@@ -1,4 +1,5 @@
 import ArtistActions from '../actions'
+import Hashmap from 'hashmap'
 
 const initialState = {
     list: [],
@@ -11,7 +12,7 @@ const initialState = {
 export default function artists(state = initialState, action){
     switch(action.type){
         case ArtistActions.ARTISTS_CHECKING_TOGGLE:
-            var newList = state.list.map((artist, i) => artist._id === action._id ? {...artist, isChecked: action.isChecked } : artist)
+            let newList = state.list.map((artist, i) => artist._id === action._id ? {...artist, isChecked: action.isChecked } : artist)
 
             return Object.assign({}, state, {
                 list: newList
@@ -56,7 +57,7 @@ export default function artists(state = initialState, action){
 
             if (action.tagsUnchecked && action.tagsUnchecked.length > 0){
                 const uncheckedNames = lastArr.map(el => {
-                    for (var index = 0; index < action.tagsUnchecked.length; index++) {
+                    for (let index = 0; index < action.tagsUnchecked.length; index++) {
                         const tags = el.tags.map(el => el.name)
                         if (tags.includes(action.tagsUnchecked[index].name))
                             return el._id

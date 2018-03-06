@@ -82,7 +82,7 @@ export default YoutubePlayer;
 
 /*
  ((id, callback) => {
-            var js, gs = document.getElementsByTagName('script')[0];
+            let js, gs = document.getElementsByTagName('script')[0];
             if (!document.getElementById(id)) { 
                 js = document.createElement('script'); 
                 js.id = id;

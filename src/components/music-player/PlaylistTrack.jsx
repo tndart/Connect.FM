@@ -11,7 +11,7 @@ class PlaylistTrack extends Component {
     }
 
     render() {
-        var { track } = this.props
+        let { track } = this.props
 
         return (
             <li className="playlist-track">

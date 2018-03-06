@@ -48,7 +48,7 @@ export default function tags(state = initialState, action){
                 }
             });
         case TagActions.TAGS_CHECKING_TOGGLE:
-            var newList = state.topTags.map((tag, i) => 
+            let newList = state.topTags.map((tag, i) => 
                                             tag._id === action._id ? {...tag, isChecked: action.isChecked } : tag)
 
             return Object.assign({}, state, {

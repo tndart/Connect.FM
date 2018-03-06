@@ -51,9 +51,9 @@ export function fetchPlaylist(){
             )
             .then(json => {
                 if (json instanceof Array){
-                    var regexp = new RegExp(/\b.*=(.*)/)
+                    let regexp = new RegExp(/\b.*=(.*)/)
 
-                    var promises = json.map(track => {
+                    let promises = json.map(track => {
                         return new Promise(resolve => {
                             track.youtubeVideoID = regexp.exec(track.url)[1]
                             resolve()

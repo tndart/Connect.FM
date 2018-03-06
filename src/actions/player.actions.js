@@ -20,7 +20,7 @@ export const PlayerActions = {
     next
 }
 
-var unsubscribe;
+let unsubscribe;
 
 function firstPlay(){
     return new Promise(resolve => {

@@ -11,7 +11,7 @@ class PlayerActionBar extends Component {
     }
 
     render() {
-        var { children } = this.props
+        let { children } = this.props
 
         return (
             <div className="player-actions">

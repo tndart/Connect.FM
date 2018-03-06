@@ -25,7 +25,7 @@ class GoogleLogin extends React.Component {
         // and init the gapi.auth2
         ((d, s, id, callback) => {
         
-            var js, gs = d.getElementsByTagName(s)[0];
+            let js, gs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { 
                 this.setState({
                 disabled: false

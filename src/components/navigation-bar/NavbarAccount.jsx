@@ -99,7 +99,7 @@ class NavbarAccount extends Component {
 
 const mapStateToProps = (state) => {
 
-  var iconPic = undefined
+  let iconPic = undefined
 
   if (state.user && state.user.data && state.user.data.pic)
     iconPic = state.user.data.pic

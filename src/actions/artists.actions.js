@@ -41,8 +41,8 @@ export function getTopArtistsByTags(skip=0, limit=30) {
 
         // remove artists that unchecked.
         // if (not checked yet) Get top artists of tags that checked from API.
-        var artists = []
-        var index = 0
+        let artists = []
+        let index = 0
         const allArtists  = getState().artists.list
         const tagsChecked = getState().tags.topTags.filter(tag => tag.isChecked === true)
 

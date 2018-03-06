@@ -28,7 +28,7 @@ class LocalLogin extends Component {
     handleSubmit(e){
         e.preventDefault();
         const { dispatch } = this.props;
-        var user = {
+        let user = {
             data: { username : e.target.username.value },
             auth: { local: { password : e.target.password.value } }
         }
