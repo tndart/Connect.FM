@@ -1,4 +1,4 @@
-import PlayerActions from '../actions'
+import Actions from '../actions'
 
 const initialState = {
     cursorIndex: -1,
@@ -9,19 +9,19 @@ const initialState = {
 
 export default function player(state = initialState, action){
     switch(action.type){
-        case PlayerActions.FIRST_PLAY:
+        case Actions.FIRST_PLAY:
             return Object.assign({}, state, {
                 cursorIndex: 0,
                 ready: false
             })
-        case PlayerActions.FIRST_PLAY_FINISHED:
+        case Actions.FIRST_PLAY_FINISHED:
             return Object.assign({}, state, {
                 ready: true,
                 isPlaying: true,
                 currVideo: action.payload.currVideo,
                 cursorIndex: action.payload.cursorIndex
             })
-        case PlayerActions.PLAY: 
+        case Actions.PLAY: 
             if(state.ready){
                 return Object.assign({}, state, {
                     isPlaying: true
@@ -29,7 +29,7 @@ export default function player(state = initialState, action){
             }
 
             return state
-        case PlayerActions.NEXT_SONG:
+        case Actions.NEXT_SONG:
             if(state.ready){
                 return Object.assign({}, state, {
                     isPlaying: true,
@@ -39,7 +39,7 @@ export default function player(state = initialState, action){
             }
 
             return state
-        case PlayerActions.PAUSE: 
+        case Actions.PAUSE: 
             if(state.ready){
                 return Object.assign({}, state, {
                     isPlaying: false

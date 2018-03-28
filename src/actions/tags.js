@@ -1,4 +1,5 @@
 import { fetch } from 'cross-fetch'
+import { APIActions } from './api.actions';
 
 // Consts
 const TAGS_TOP_URL = 'http://localhost:8080/tag/top'
@@ -11,38 +12,26 @@ export const TAGS_TOP_ERR = 'TAGS_TOP_ERR'
 
 export const TAGS_CHECKING_TOGGLE = 'TAGS_CHECKING_TOGGLE' 
 
-// Actions Creator
-function Request(type){
-    return {
-        type: type
-    }
-}
-
-function Received(type, json){
-    return {
-        type: type,
-        payload: json,
-    }
-}
-
-function Error(type, err){
-    return {
-        type: type,
-        error: err,
-    }
-}
-
+// Action creator
 export function getTopTags(){
     return dispatch => {
-        dispatch(Request(TAGS_TOP_REQ))
-        return fetch(TAGS_TOP_URL)
-            .then(
-                response => response.json(), 
-                err => {
-                    dispatch(Error(TAGS_TOP_ERR,err));
-                }
-            )
-            .then(json => dispatch(Received(TAGS_TOP_RES, json)))
+        dispatch( { type: TAGS_TOP_REQ } )
+
+        const onSuccess = (data) => {
+            dispatch({ 
+                type: TAGS_TOP_RES,
+                payload: data 
+            })
+        }
+
+        const onFailure = (error) => {
+            dispatch({ 
+                type: TAGS_TOP_ERR,
+                payload: error 
+            })
+        }
+
+        dispatch( APIActions.get("Tags", TAGS_TOP_URL, onSuccess, onFailure) )
     }
 }
 

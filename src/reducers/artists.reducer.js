@@ -1,24 +1,26 @@
-import ArtistActions from '../actions'
+import Actions from '../actions'
 import Hashmap from 'hashmap'
 
 const initialState = {
+    map: new Hashmap(),
     list: [],
     lastFm: {
-        isFetching: false,
-        list: []
+        map: new Hashmap(),
+        list: [],
+        isFetching: false
     }
 };
 
 export default function artists(state = initialState, action){
     switch(action.type){
-        case ArtistActions.ARTISTS_CHECKING_TOGGLE:
+        case Actions.ARTISTS_CHECKING_TOGGLE:
             let newList = state.list.map((artist, i) => artist._id === action._id ? {...artist, isChecked: action.isChecked } : artist)
 
             return Object.assign({}, state, {
                 list: newList
             })
 
-        case ArtistActions.TOP_ARTISTS_REQ:
+        case Actions.TOP_ARTISTS_REQ:
             if(!state.lastFm.isFetching){
                 return Object.assign({}, state, {
                     lastFm: {
@@ -29,9 +31,12 @@ export default function artists(state = initialState, action){
             }
 
             return state;
-        case ArtistActions.TOP_ARTISTS_RES: 
+        case Actions.TOP_ARTISTS_RES: 
             if(state.lastFm.isFetching) {
                 if (action.payload && action.payload.length > 0) {
+                    const newMap = new Hashmap()
+                    
+                    
                     const newArr = state.list.concat(action.payload)
                     const idPositions = newArr.map(el => el._id)
                     const newPayload = newArr.filter((item, pos, arr) => {
@@ -49,10 +54,10 @@ export default function artists(state = initialState, action){
             }
 
             return state;
-        case ArtistActions.TOP_ARTISTS_ERR: 
+        case Actions.TOP_ARTISTS_ERR: 
             return state
 
-        case ArtistActions.REMOVE_FROM_TOPARTISTS:
+        case Actions.REMOVE_FROM_TOPARTISTS:
             const lastArr = state.list
 
             if (action.tagsUnchecked && action.tagsUnchecked.length > 0){

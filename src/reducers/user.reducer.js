@@ -1,6 +1,7 @@
-import UserActions from '../actions'
+import Actions from '../actions'
+import { config } from '../util/helpers'
 
-let localStorageState = JSON.parse(localStorage.getItem('connect-fm-user'))
+let localStorageState = JSON.parse(localStorage.getItem(config.UserDataCookieName))
 
 const defaultInitialState = {
     data: undefined,
@@ -20,10 +21,10 @@ const initialState = localStorageState ? localStorageState : defaultInitialState
 
 export default function user(state = initialState, action){
     switch (action.type) {
-        case UserActions.SIGNUP_LOCAL:
+        case Actions.SIGNUP_LOCAL:
             return state;
 
-        case UserActions.LOGIN_LOCAL:
+        case Actions.LOGIN_LOCAL:
             const newLocalState = {
                 data : action.payload.data,
                 auth : { 
@@ -35,11 +36,11 @@ export default function user(state = initialState, action){
                 }
             }
 
-            localStorage.setItem('connect-fm-user', JSON.stringify(newLocalState))
+            localStorage.setItem(config.UserDataCookieName, JSON.stringify(newLocalState))
 
             return Object.assign({}, state, newLocalState)
 
-        case UserActions.SAVE_GOOGLE_USER:
+        case Actions.SAVE_GOOGLE_USER:
             const profile = action.payload.getBasicProfile()
             const newGoogleState = {
                 data: {
@@ -63,12 +64,12 @@ export default function user(state = initialState, action){
                 }
             }
 
-            localStorage.setItem('connect-fm-user', JSON.stringify(newGoogleState))
+            localStorage.setItem(config.UserDataCookieName, JSON.stringify(newGoogleState))
 
             return Object.assign({}, state, newGoogleState);
 
-        case UserActions.LOGOUT:
-            localStorage.removeItem('connect-fm-user');
+        case Actions.LOGOUT:
+            localStorage.removeItem(config.UserDataCookieName);
         
             return Object.assign({}, state, defaultInitialState);
 

@@ -1,4 +1,5 @@
-import TagActions from '../actions'
+import Actions from '../actions'
+import Hashmap from 'hashmap'
 
 const initialState = {
     topTags: [],
@@ -10,7 +11,7 @@ const initialState = {
 
 export default function tags(state = initialState, action){
     switch(action.type){
-        case TagActions.TAGS_TOP_REQ:
+        case Actions.TAGS_TOP_REQ:
             if (!state.lastFm.isFetching) {
                 return Object.assign({}, state, {
                     lastFm: { 
@@ -20,7 +21,7 @@ export default function tags(state = initialState, action){
             }
         
             return state
-        case TagActions.TAGS_TOP_RES: 
+        case Actions.TAGS_TOP_RES: 
             if(state.lastFm.isFetching) {
                 const newArr = state.topTags.concat(action.payload)  
                 const idPositions = newArr.map(el => el._id)
@@ -39,7 +40,7 @@ export default function tags(state = initialState, action){
             }
             
             return state
-        case TagActions.TAGS_TOP_ERR: 
+        case Actions.TAGS_TOP_ERR: 
             return Object.assign({}, state, {
                 lastFm: {
                     isFetching: false,
@@ -47,7 +48,7 @@ export default function tags(state = initialState, action){
                     receivedAt: Date.now()
                 }
             });
-        case TagActions.TAGS_CHECKING_TOGGLE:
+        case Actions.TAGS_CHECKING_TOGGLE:
             let newList = state.topTags.map((tag, i) => 
                                             tag._id === action._id ? {...tag, isChecked: action.isChecked } : tag)
 

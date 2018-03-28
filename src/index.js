@@ -7,6 +7,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
+import { ApiMiddleware } from './middlewares/ApiMiddleware';
+import { MetaInfoMiddleware } from './middlewares/MetaInfoMiddleware';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createMuiTheme } from 'material-ui/styles';
@@ -18,13 +20,14 @@ import { attachHistory, attachStore } from './util/helpers'
 import rootReducer from './reducers/index'
 import App from './App'
 
-
 const loggerMiddleware = createLogger()
-const store = createStore(
+const store = createStore (
     rootReducer,
     applyMiddleware(
+        MetaInfoMiddleware,
         thunkMiddleware, // Helps to async fetching
-        loggerMiddleware
+        loggerMiddleware,
+        ApiMiddleware,
     )
 )
 attachStore(store)

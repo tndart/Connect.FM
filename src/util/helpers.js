@@ -17,3 +17,8 @@ export function attachStore(store){
 export function getStore(){
     return _store;
 }
+
+export const config = {
+    AuthorizationCookieName: "ConnectFM|Auth",
+    UserDataCookieName: "ConnectFM|UserData"
+}
