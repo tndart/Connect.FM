@@ -55,7 +55,7 @@ class GoogleLogin extends React.Component {
 
     clickHandler () {
         const auth2 = gapi.auth2.getAuthInstance();
-        auth2.signIn().then( googleUser => this.props.dispatch(UserActions.saveGoogleUser(googleUser)) )
+        auth2.signIn().then( googleUser => this.props.dispatch(UserActions.loginOrSignupByGoogle(googleUser)) )
     }
 
     render () {

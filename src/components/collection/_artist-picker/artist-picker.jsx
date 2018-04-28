@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ImagePicker } from '../index';
-import ArtistActions from '../../../actions'
+import * as ArtistActions from '../../../actions/artists.actions'
 import { Link } from 'react-router-dom'
 import util from '../../../util/componentExtender'
 

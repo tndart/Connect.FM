@@ -1,27 +1,37 @@
 import { fetch } from 'cross-fetch'
 import Cookies from 'js-cookie'
 
-import { APIActions } from "../actions/api.actions"
+import { APIActions } from '../actions/api.actions'
 import { errorReport } from '../actions/logger.actions'
+import { UserActions } from '../actions/user.actions'
 import { config } from '../util/helpers'
 
 
 export const ApiMiddleware = store => next => action => {
     
-    let auth = Cookies.get(config.AuthorizationCookieName)
+    let auth = store.getState().user.auth;
 
-    let token = null
+    let token = ''
     if (auth){
-        token = auth
+        token = auth.jwtToken
     }
 
     if (action.type === APIActions.API_REQUEST) {
-        const request = action.payload;
+        const request = action.payload
+        const method = action.meta.method
+        let body = undefined;
 
+        if(method === "POST"){
+            body = JSON.stringify( { payload: action.payload.postPayload } );
+        }
         if (request.onSuccess && request.url) {
             const options = {
+                body,
+                method,
                 headers: {
-                    'Authorization': 'Bearer ' + 'dsa'
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }
             fetch(request.url, options)

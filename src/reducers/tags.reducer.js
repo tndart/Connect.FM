@@ -25,9 +25,10 @@ export default function tags(state = initialState, action){
             if(state.lastFm.isFetching) {
                 const newArr = state.topTags.concat(action.payload)  
                 const idPositions = newArr.map(el => el._id)
-                const newPayload = newArr.filter((item, pos, arr) => {
-                                                return idPositions.indexOf(item._id) === pos;
-                })
+                const newPayload = 
+                    newArr.filter((item, pos, arr) => {
+                        return idPositions.indexOf(item._id) === pos;
+                    })
 
                 return Object.assign({}, state, {
                     topTags: newPayload,

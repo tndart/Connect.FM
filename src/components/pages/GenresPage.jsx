@@ -5,6 +5,9 @@ import Link from 'react-router-dom/Link'
 
 import Container from '../container'
 import { BadgePicker } from '../collection/index'
+import Button from 'material-ui/Button';
+import Actions from '../../actions';
+import * as Helpers from '../../util/helpers';
 
 /* UI component only , used for style a basic container in app  */
 class GenresPage extends Component {
@@ -12,6 +15,22 @@ class GenresPage extends Component {
         super(props)
 
         this.state = {}
+
+        this.onClickHandler = this.onClickHandler.bind(this)
+    }
+
+    onClickHandler(e){
+        const { dispatch, topTags } = this.props
+
+        const selectedTags = topTags.filter((item, pos) => {
+            if (item.isChecked === true){
+                return item._id;
+            }
+        })
+    
+        dispatch(Actions.updatePreferences(selectedTags));
+
+        Helpers.getHistory().push('/artists')
     }
 
     render() {
@@ -20,14 +39,20 @@ class GenresPage extends Component {
             <Container>
                 <div className="row">
                     <div className="col-2">
-                        <Link style={{float: "left"}} className="btn btn-primary" to="/">Back</Link>
+                        <Link to="/">                        
+                            <Button style={{float: "left"}} variant="raised" color="primary"> 
+                                Back 
+                            </Button>    
+                        </Link>
                     </div>
                     <div className="col">
                         <h4 style={{textAlign: "center"}}>Genres:</h4>
                     <br/>
                     </div>
                     <div className="col-2">
-                        <Link style={{float: "right"}} className="btn btn-primary" to="/artists">Proceed</Link>
+                        <Button style={{float: "right"}} variant="raised" color="primary" onClick={this.onClickHandler}> 
+                            Procced 
+                        </Button>    
                     </div>
                 </div>
                 <div className="row">         

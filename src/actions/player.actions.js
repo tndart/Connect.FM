@@ -6,15 +6,13 @@ const NEXT_SONG = "NEXT_SONG"
 const FIRST_PLAY = "FIRST_PLAY"
 const FIRST_PLAY_FINISHED = "FIRST_PLAY_FINISHED"
 
-export const PlayerConstants = {
+export const PlayerActions = {
     PLAY,
     PAUSE,
     NEXT_SONG,
     FIRST_PLAY,
-    FIRST_PLAY_FINISHED
-}
-
-export const PlayerActions = {
+    FIRST_PLAY_FINISHED,
+    
     play,
     pause,
     next

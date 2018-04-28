@@ -12,5 +12,6 @@ export const BaseTags = {
     PLAYLIST: "[PLAYLIST]",
     GENRES: "[GENRES]",
     PLAYER: "[PLAYER]",
-    API: "[API]"
+    API: "[API]",
+    USER: "[USER]"
 }

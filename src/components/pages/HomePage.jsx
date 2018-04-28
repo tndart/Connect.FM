@@ -6,6 +6,8 @@ import { Redirect } from 'react-router-dom'
 
 import LoginPage from './LoginPage'
 import PlayerPage from './PlayerPage'
+import AboutPage from './AboutPage'
+import GenresPage from './GenresPage'
 
 /* UI component only , used for style a basic container in app  */
 class HomePage extends Component {
@@ -17,11 +19,14 @@ class HomePage extends Component {
     }
 
     render() {
+        const { user } = this.props
+
         return (
             <div>
                 {
-                    this.props.user.auth && this.props.user.auth.isAuthorized ?
-                        <PlayerPage/>
+                    user && user.auth && user.auth.isAuthorized ?
+                        ( user.preferences && user.preferences.done ? 
+                            <PlayerPage/> : <GenresPage/> )
                         : 
                         <LoginPage/> 
                 }

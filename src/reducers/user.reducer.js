@@ -4,7 +4,8 @@ import { config } from '../util/helpers'
 let localStorageState = JSON.parse(localStorage.getItem(config.UserDataCookieName))
 
 const defaultInitialState = {
-    data: undefined,
+    profile: undefined,
+    preferences: undefined,
     auth: {
         isAuthorized: false,
         authorizedBy: undefined,
@@ -13,7 +14,8 @@ const defaultInitialState = {
         },
         google: {
             isAuthorized: false
-        }
+        },
+        jwtToken: null,
     }
 }
 
@@ -26,7 +28,8 @@ export default function user(state = initialState, action){
 
         case Actions.LOGIN_LOCAL:
             const newLocalState = {
-                data : action.payload.data,
+                profile : action.payload.profile,
+                preferences: action.payload.preferences,
                 auth : { 
                     isAuthorized: true,
                     authorizedBy: "LOCAL",
@@ -40,11 +43,20 @@ export default function user(state = initialState, action){
 
             return Object.assign({}, state, newLocalState)
 
+        case Actions.LOGIN_OR_SIGNUP_BY_GOOGLE_SUCCEDED:
+            if(!action.payload){
+                return state;
+            }
+
+            const newUser = action.payload
+            newUser.auth.isAuthorized = true
+            localStorage.setItem(config.UserDataCookieName, JSON.stringify(newUser))   
+            return Object.assign({}, state, newUser)
+
         case Actions.SAVE_GOOGLE_USER:
             const profile = action.payload.getBasicProfile()
             const newGoogleState = {
-                data: {
-                    id: profile.getId(),
+                profile: {
                     username: profile.getEmail(),
                     firstname: profile.getGivenName(),
                     lastname: profile.getFamilyName(),
@@ -72,7 +84,8 @@ export default function user(state = initialState, action){
             localStorage.removeItem(config.UserDataCookieName);
         
             return Object.assign({}, state, defaultInitialState);
-
+        case Actions.UPDATE_PREFERENCES_SUCCEDED:
+            return Object.assign({}, state, { preferences: action.payload.preferences});
         default:
             return state;
     }
