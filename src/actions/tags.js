@@ -1,6 +1,6 @@
 import { fetch } from 'cross-fetch'
 import { APIActions } from './api.actions';
-import * as Helpers from '../../util/helpers';
+import * as Helpers from '../util/helpers';
 
 // Consts
 const Host = Helpers.config.ServerHost;

@@ -1,6 +1,6 @@
 import { fetch } from 'cross-fetch'
 import { APIActions } from './api.actions';
-import * as Helpers from '../../util/helpers';
+import * as Helpers from '../util/helpers';
 
 const Host = Helpers.config.ServerHost;
 const SIGNUP_ENDPOINT = `http://${Host}/user/signup`
