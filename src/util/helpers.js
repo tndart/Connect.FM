@@ -20,5 +20,6 @@ export function getStore(){
 
 export const config = {
     AuthorizationCookieName: "ConnectFM|Auth",
-    UserDataCookieName: "ConnectFM|UserData"
+    UserDataCookieName: "ConnectFM|UserData",
+    ServerHost: "193.106.55.131:8080",
 }

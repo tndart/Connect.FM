@@ -1,5 +1,6 @@
 import { fetch } from 'cross-fetch'
 import { APIActions } from './api.actions';
+import * as Helpers from '../../util/helpers';
 
 // Actions Name
 export const GET_DEMO = 'GET_DEMO'
@@ -10,7 +11,8 @@ export const TOP_ARTISTS_ERR = 'TOP_ARTISTS_ERR'
 export const ARTISTS_CHECKING_TOGGLE = 'ARTISTS_CHECKING_TOGGLE'
 export const REMOVE_FROM_TOPARTISTS = 'REMOVE_FROM_TOPARTISTS'
 
-export const ARTISTS_BY_TAG_URL = `http://localhost:8080/tag/{tag}/artists`
+const Host = Helpers.config.ServerHost;
+export const ARTISTS_BY_TAG_URL = `http://${Host}/tag/{tag}/artists`
 
 function Request(dispatch, tag, skip, limit){
     dispatch({type: TOP_ARTISTS_REQ}) // event

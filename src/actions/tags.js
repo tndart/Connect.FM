@@ -1,8 +1,10 @@
 import { fetch } from 'cross-fetch'
 import { APIActions } from './api.actions';
+import * as Helpers from '../../util/helpers';
 
 // Consts
-const TAGS_TOP_URL = 'http://localhost:8080/tag/top'
+const Host = Helpers.config.ServerHost;
+const TAGS_TOP_URL = `http://${Host}/tag/top`
 
 // Actions Name
 export const GET_TOP_TAGS = 'GET_TOP_TAGS'
