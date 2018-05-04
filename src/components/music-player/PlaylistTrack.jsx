@@ -11,11 +11,11 @@ class PlaylistTrack extends Component {
     }
 
     render() {
-        let { track } = this.props
+        const { track } = this.props
 
         return (
             <li className="playlist-track">
-                { track.artist } - { track.songname } 
+                { track.name } 
             </li>
         )
     }
@@ -23,10 +23,8 @@ class PlaylistTrack extends Component {
 
 PlaylistTrack.propTypes = {
     track: PropTypes.shape({
-        songname: PropTypes.string.isRequired,
-        artist: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        pic: PropTypes.string
+        name: PropTypes.string.isRequired,
+        youtubeId: PropTypes.string.isRequired,
     }).isRequired
 }
 

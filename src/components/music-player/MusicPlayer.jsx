@@ -57,9 +57,9 @@ class MusicPlayer extends Component {
             <div>
                 <div>
                     { 
-                        currVideo && currVideo.youtubeVideoID && 
+                        currVideo && currVideo.youtubeId && 
                         <YoutubePlayer 
-                            currentVideo = { currVideo.youtubeVideoID } 
+                            currentVideo = { currVideo.youtubeId } 
                             play = { isPlaying }
                             onEndedVideo = { this.onEndedVideo }/>
                     }

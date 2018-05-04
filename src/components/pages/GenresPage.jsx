@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Link from 'react-router-dom/Link'
+import { withRouter } from 'react-router'
 
 import Container from '../container'
 import { BadgePicker } from '../collection/index'
@@ -30,7 +31,7 @@ class GenresPage extends Component {
     
         dispatch(Actions.updatePreferences(selectedTags));
 
-        Helpers.getHistory().push('/artists')
+        this.props.history.push('/artists')
     }
 
     render() {
@@ -74,6 +75,6 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(GenresPage)
+export default withRouter(connect(mapStateToProps)(GenresPage))
 
 

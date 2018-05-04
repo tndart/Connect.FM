@@ -1,10 +1,14 @@
 import { fetch } from 'cross-fetch'
+import { APIActions } from './api.actions';
 
 // Actions Name
 export const GET_NEW_PLAYLIST = 'GET_NEW_PLAYLIST'
 export const NEW_PLAYLIST_REQ = 'NEW_PLAYLIST_REQ'
 export const NEW_PLAYLIST_RES = 'NEW_PLAYLIST_RES'
 export const NEW_PLAYLIST_ERR = 'NEW_PLAYLIST_ERR'
+
+const GET_NEXT_PLAYLIST_URL = 'http://localhost:8080/playlist/getnext?userid={userid}&amount={MAX_RESULTS}'
+const MAX_RESULTS = 10;
 
 // Action Creators
 function getNewPlaylist(){
@@ -36,36 +40,25 @@ function errorNewPlaylist(err){
 }
 
 export function fetchPlaylist(){
-    return dispatch => {
-        setTimeout(() => {
+    return (dispatch, getState) => {
+        dispatch({type: NEW_PLAYLIST_REQ}) // event
 
-
-        dispatch(getNewPlaylist())
-        dispatch(requestNewPlaylist())
-        return fetch('https://api.jsonbin.io/b/5a9536b273fb541c61a5893d')
-            .then(
-                response => response.json(), 
-                err => {
-                    dispatch(errorNewPlaylist(err));
-                }
-            )
-            .then(json => {
-                if (json instanceof Array){
-                    let regexp = new RegExp(/\b.*=(.*)/)
-
-                    let promises = json.map(track => {
-                        return new Promise(resolve => {
-                            track.youtubeVideoID = regexp.exec(track.url)[1]
-                            resolve()
-                        })
-                    })
-                    
-                    Promise.all(promises).then(() => {
-                        dispatch(receivedNewPlaylist(json))
-                    })
-                }
-                
+        const onSuccess = (data) => {
+            dispatch({ 
+                type: NEW_PLAYLIST_RES,
+                payload: data 
             })
-        }, 3000)
+        }
+    
+        const onFailure = (error) => {
+            dispatch({ 
+                type: NEW_PLAYLIST_ERR,
+                payload: error 
+            })
+        }
+        
+        const URL = GET_NEXT_PLAYLIST_URL.replace('{userid}', getState().user._id).replace('{MAX_RESULTS}', MAX_RESULTS)
+
+        return dispatch(APIActions.get("Playlist", URL , onSuccess, onFailure))
     }
 }

@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Link from 'react-router-dom/Link'
+import { withRouter } from 'react-router'
 
 import Container from '../container'
 import { ArtistPicker } from '../collection/index';
@@ -32,7 +33,7 @@ class ArtistsPage extends Component {
     
         dispatch(Actions.updatePreferences(undefined, selectedArtists));
 
-        Helpers.getHistory().push('/player')
+        this.props.history.push('/player')
     }
 
     render() {
@@ -76,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(ArtistsPage)
+export default withRouter(connect(mapStateToProps)(ArtistsPage))
 
 
 

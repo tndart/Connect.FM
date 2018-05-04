@@ -26,7 +26,7 @@ export default function playlist(state = initialState, action){
             return Object.assign({}, state, {
                 isFetching: false,
                 gotData: true,
-                playlist: action.playlist
+                playlist: action.payload
             });
         case Actions.NEW_PLAYLIST_ERR: 
             return Object.assign({}, state, {

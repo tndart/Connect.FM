@@ -32,7 +32,7 @@ function firstPlay(){
                     unsubscribe()
 
                     const cursorIndex = 0;
-                    const currVideo = state.playlist.playlist[cursorIndex];
+                    const currVideo = state.playlist.playlist[cursorIndex]
 
                     resolve({
                         type: FIRST_PLAY_FINISHED, 
