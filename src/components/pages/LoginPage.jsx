@@ -23,8 +23,6 @@ export default class LoginPage extends Component {
                 <h6 className="text-center"> A place that all you need is to PLAY music </h6>
                 <br/>
 
-                <LocalLogin className="local-login-container"/>
-
                 <div className="row">
                     <div className="col mx-auto text-center">
                         <GoogleLogin 
@@ -36,7 +34,6 @@ export default class LoginPage extends Component {
                                 Login With Google
                         </GoogleLogin>
                         <p/>
-                        <Link className="btn btn-primary" to="/user/signup">Signup</Link>
                     </div>
                 </div>
             </Container>

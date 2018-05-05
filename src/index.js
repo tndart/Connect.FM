@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { HashRouter, Router, Route } from 'react-router-dom'
+import { HashRouter as Router }  from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
 import { createStore, applyMiddleware } from 'redux'
@@ -49,11 +50,11 @@ class Root extends Component{
     render(){
         return(
             <Provider store={store}>
-                <HashRouter history={history}>
+                <Router history={history}>
                     <MuiThemeProvider theme={theme}>
                         <App/>
                     </MuiThemeProvider>
-                </HashRouter>
+                </Router>
             </Provider> 
         )
     }

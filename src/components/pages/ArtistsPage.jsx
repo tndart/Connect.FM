@@ -23,17 +23,12 @@ class ArtistsPage extends Component {
     }
 
     onClickHandler(e){
-        const { dispatch, list } = this.props
+        const { dispatch, list, history } = this.props
 
-        const selectedArtists = list.filter((item, pos) => {
-            if (item.isChecked === true){
-                return item._id;
-            }
-        })
-    
+        const selectedArtists = list.filter(item => item.isChecked).map((item, pos) => item._id);    
         dispatch(Actions.updatePreferences(undefined, selectedArtists));
 
-        this.props.history.push('/player')
+        history.push('/player')
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
@@ -46,10 +47,10 @@ class NavbarAccount extends Component {
     }
 
     logoutHandler(e) {
-      const { dispatch } = this.props
+      const { dispatch, history } = this.props
       dispatch(UserActions.logout())
       this.handleClose()
-      getHistory().push('/');
+      history.push('/');
     }
 
     render() {
@@ -107,4 +108,4 @@ const mapStateToProps = (state) => {
   return { iconPic }
 }
 
-export default connect(mapStateToProps) (NavbarAccount);
+export default withRouter(connect(mapStateToProps) (NavbarAccount))

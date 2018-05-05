@@ -21,17 +21,12 @@ class GenresPage extends Component {
     }
 
     onClickHandler(e){
-        const { dispatch, topTags } = this.props
+        const { dispatch, history, topTags } = this.props
 
-        const selectedTags = topTags.filter((item, pos) => {
-            if (item.isChecked === true){
-                return item._id;
-            }
-        })
-    
+        const selectedTags = topTags.filter(item => item.isChecked).map((item, pos) => item._id);    
         dispatch(Actions.updatePreferences(selectedTags));
 
-        this.props.history.push('/artists')
+        history.push('/artists')
     }
 
     render() {

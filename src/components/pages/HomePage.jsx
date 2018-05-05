@@ -25,7 +25,7 @@ class HomePage extends Component {
             <div>
                 {
                     user && user.auth && user.auth.isAuthorized ?
-                        ( user.preferences && user.preferences.done ? 
+                        ( user.preferences && user.preferences.genres ? 
                             <PlayerPage/> : <GenresPage/> )
                         : 
                         <LoginPage/> 
