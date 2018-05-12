@@ -41,7 +41,14 @@ export const ApiMiddleware = store => next => action => {
                         console.dir(response)
 
                         response.json().then(
-                            json => request.onSuccess(json),
+                            json => {
+                                if (json.message) {
+                                    errorHandler(json, request.onFailure)
+                                }
+                                else {
+                                    request.onSuccess(json)
+                                }
+                            },
                             error => errorHandler(error, request.onFailure)
                         )
                     } else {

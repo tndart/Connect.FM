@@ -45,7 +45,7 @@ export default function tags(state = initialState, action){
             return Object.assign({}, state, {
                 lastFm: {
                     isFetching: false,
-                    error: action.error.message,
+                    error: action.payload.message,
                     receivedAt: Date.now()
                 }
             });

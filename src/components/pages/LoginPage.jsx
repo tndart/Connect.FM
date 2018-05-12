@@ -20,7 +20,8 @@ export default class LoginPage extends Component {
         return (
             <Container className="login-page-container">
                 <h4 className="text-center"> Welcome to Connect.FM </h4>
-                <h6 className="text-center"> A place that all you need is to PLAY music </h6>
+                <h5 className="text-center" style={{color: "orange"}}> Play Music Without Search For It </h5>
+                <h6 className="text-center"> Please Login with you Google Account and follow the screens </h6>
                 <br/>
 
                 <div className="row">
