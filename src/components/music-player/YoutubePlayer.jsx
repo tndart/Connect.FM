@@ -7,12 +7,12 @@ import PropTypes from 'prop-types'
 import YouTubePlayer from 'youtube-player'
 
 const PlayerStates = {
-    BUFFERING: 3,
-    ENDED: 0,
-    PAUSED: 2,
-    PLAYING: 1,
     UNSTARTED: -1,
-    VIDEO_CUED: 5
+    ENDED: 0,
+    PLAYING: 1,
+    PAUSED: 2,
+    BUFFERING: 3,
+    VIDEO_CUED: 5,
   };
 
 
@@ -28,17 +28,25 @@ class YoutubePlayer extends Component {
     componentDidMount() {
         const width = document.body.clientWidth * 0.7
         this.player = YouTubePlayer('player', { width: width } )
+        this.props.onInitial(this.player);
+
         if (this.props.currentVideo){
             this.player.loadVideoById(this.props.currentVideo)
         }
 
         this.player.on('stateChange', this.stateChangedHandler.bind(this))
+
     }
 
+    
     stateChangedHandler(event){
         switch (event.data) {
             case PlayerStates.ENDED:
-                this.props.onEndedVideo()
+                this.player.getCurrentTime().then(currentTime => {
+                    this.player.getDuration().then(duration => {
+                        this.props.onEndedVideo(event, currentTime, duration)
+                    })
+                })
                 break;
             default:
                 break;

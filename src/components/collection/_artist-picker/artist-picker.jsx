@@ -16,21 +16,6 @@ class ArtistPicker extends Component {
         this.clickHandler = this.clickHandler.bind(this);
     }
 
-    componentDidMount() {
-        const { dispatch } = this.props
-
-        dispatch(ArtistActions.getTopArtistsByTags())
-    }
-
-    componentDidUpdate(prevProps, prevState){      
-        /*if (!this.props.tagsChecked.equals(prevProps.tagsChecked) ||
-            !this.props.tagsUnchecked.equals(prevProps.tagsUnchecked)){
-                console.info('ArtistPicker:: componentDidUpdate')
-                const { dispatch, tagsChecked, tagsUnchecked } = this.props
-                dispatch(getTopArtistsByTags(tagsChecked, tagsUnchecked))
-        }*/
-    }
-
     clickHandler(e, props) {
         const { dispatch } = this.props
         const newCheckedState = props.isChecked ? false : true;

@@ -1,10 +1,15 @@
-import { getStore } from '../util/helpers'
+import { APIActions } from './api.actions';
+import * as Helpers from '../util/helpers';
 
 const PLAY = "PLAY"
 const PAUSE = "PAUSE"
 const NEXT_SONG = "NEXT_SONG"
 const FIRST_PLAY = "FIRST_PLAY"
 const FIRST_PLAY_FINISHED = "FIRST_PLAY_FINISHED"
+const SONG_ENDED = "SONG_ENDED"
+
+const Host = Helpers.config.ServerHost;
+export const SAVE_EVENT = `http://${Host}/history/saveEvent`
 
 export const PlayerActions = {
     PLAY,
@@ -15,31 +20,32 @@ export const PlayerActions = {
     
     play,
     pause,
-    next
+    next,
+    songEnded
 }
 
 let unsubscribe;
 
 function firstPlay(){
     return new Promise(resolve => {
-            const store = getStore();
-            unsubscribe = store.subscribe(handleChange)
-    
-            function handleChange(){
-                const state = store.getState();
-    
-                if (state.playlist && state.playlist.playlist && state.playlist.playlist.length > 0){
-                    unsubscribe()
+        const store = Helpers.getStore();
+        unsubscribe = store.subscribe(handleChange)
 
-                    const cursorIndex = 0;
-                    const currVideo = state.playlist.playlist[cursorIndex]
+        function handleChange(){
+            const state = store.getState();
 
-                    resolve({
-                        type: FIRST_PLAY_FINISHED, 
-                        payload: { cursorIndex, currVideo }
-                    })
-                }
+            if (state.playlist && state.playlist.playlist && state.playlist.playlist.length > 0){
+                unsubscribe()
+
+                const cursorIndex = 0;
+                const currVideo = state.playlist.playlist[cursorIndex]
+
+                resolve({
+                    type: FIRST_PLAY_FINISHED, 
+                    payload: { cursorIndex, currVideo }
+                })
             }
+        }
     })
 }
 
@@ -67,6 +73,7 @@ function pause(){
 
 function next() {
     return (dispatch, getState) => {
+        console.log("next")
         const state = getState();
         const playlist = state.playlist.playlist
         const cursorIndex = state.player.cursorIndex + 1 
@@ -83,5 +90,33 @@ function next() {
             })
         }
 
+    }
+}
+
+function songEnded(currentTime, duration){
+    return (dispatch, getState) => {
+        
+        const state = getState();
+        const playlist = state.playlist.playlist
+        const cursorIndex = state.player.cursorIndex
+        const currentSong = playlist[cursorIndex];
+
+        const payload = {
+            event: NEXT_SONG,
+            category: "Player",
+            songname: currentSong.name,
+            durationPrecentage: Math.floor(currentTime / duration * 100),
+            userId: state.user._id,
+        }
+
+        const onSuccess = (data) => {
+            console.log(data)
+        }
+    
+        const onFailure = (error) => {
+            console.log(error)
+        }
+    
+        dispatch(APIActions.post("History", SAVE_EVENT, onSuccess, onFailure, payload))
     }
 }

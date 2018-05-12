@@ -23,6 +23,7 @@ class MusicPlayer extends Component {
             currVideo: ""
         }
 
+        this.player = null;
         this.onEndedVideo = this.onEndedVideo.bind(this)
     }    
 
@@ -32,11 +33,24 @@ class MusicPlayer extends Component {
     }
 
     nextHandler(e){
-        this.props.next()
+        if (this.player){
+            this.player.getCurrentTime().then(currentTime => {
+                this.player.getDuration().then(duration => {
+                    this.props.songEnded(currentTime, duration)
+                })
+            })
+        }
+
+        setTimeout(this.props.next, 500);
     }
 
-    onEndedVideo(e){
-        this.nextHandler(e)
+    init(player) {
+        this.player = player;
+    }
+
+    onEndedVideo(e, currentTime, duration){
+        this.props.songEnded(currentTime, duration)
+        this.props.next()
     }
 
     play_pause(e){
@@ -58,7 +72,8 @@ class MusicPlayer extends Component {
                 <div>
                     { 
                         currVideo && currVideo.youtubeId && 
-                        <YoutubePlayer 
+                        <YoutubePlayer
+                            onInitial = { this.init.bind(this) }
                             currentVideo = { currVideo.youtubeId } 
                             play = { isPlaying }
                             onEndedVideo = { this.onEndedVideo }/>
@@ -100,6 +115,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return { 
+        songEnded: (currentTime, duration) => dispatch(Actions.songEnded(currentTime, duration)),
         fetchPlaylist: () => dispatch(Actions.fetchPlaylist()) , 
         play: () => dispatch(Actions.play()),
         pause: () => dispatch(Actions.pause()),

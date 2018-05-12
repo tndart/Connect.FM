@@ -22,6 +22,11 @@ class ArtistsPage extends Component {
         this.onClickHandler = this.onClickHandler.bind(this)
     }
 
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(Actions.getTopArtistsByTags())
+    }
+
     onClickHandler(e){
         const { dispatch, list, history } = this.props
 
@@ -65,6 +70,23 @@ class ArtistsPage extends Component {
 
 function mapStateToProps(state) {
     const { list } = state.artists
+    const { user } = state
+
+    if (user && user.preferences && user.preferences.artists && user.preferences.artists.length > 0 && list && list.length > 0){
+        const artists = user.preferences.artists;
+        for(let index = 0; index < artists.length; index++){
+            const currArtist = artists[index];
+            const indexFound = list.findIndex(item => item._id === currArtist._id);
+
+            if (indexFound !== -1){
+                let updated = list[indexFound];
+                if (updated.isChecked !== false){
+                    updated.isChecked = true;
+                }
+                list[indexFound] = updated;
+            }
+        }
+    }
 
     return {
         list

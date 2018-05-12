@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getTopTags, checkingToggle } from '../../../actions/tags'
+import { checkingToggle } from '../../../actions/tags'
 import { Badge } from '../index'
 
 class BadgePicker extends Component {
@@ -12,11 +12,6 @@ class BadgePicker extends Component {
         };
 
         this.clickHandler = this.clickHandler.bind(this)
-    }
-
-    componentDidMount(){
-        const { dispatch } = this.props
-        dispatch(getTopTags());
     }
 
     colorByRank(rank){
