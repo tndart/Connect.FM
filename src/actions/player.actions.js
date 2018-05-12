@@ -105,6 +105,7 @@ function songEnded(currentTime, duration){
             event: NEXT_SONG,
             category: "Player",
             songname: currentSong.name,
+            songId: currentSong.songId,
             durationPrecentage: Math.floor(currentTime / duration * 100),
             userId: state.user._id,
         }
