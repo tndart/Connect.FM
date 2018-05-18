@@ -104,7 +104,7 @@ function songEnded(currentTime, duration){
         const payload = {
             event: NEXT_SONG,
             category: "Player",
-            songname: currentSong.name,
+            songName: currentSong.name,
             songId: currentSong.songId,
             durationPrecentage: Math.floor(currentTime / duration * 100),
             userId: state.user._id,
@@ -118,6 +118,13 @@ function songEnded(currentTime, duration){
             console.log(error)
         }
     
-        dispatch(APIActions.post("History", SAVE_EVENT, onSuccess, onFailure, payload))
+        if (payload.songId && (payload.durationPrecentage || payload.durationPrecentage === 0) && payload.userId) {
+            dispatch(APIActions.post("History", SAVE_EVENT, onSuccess, onFailure, payload))
+        }
+        else {
+            console.error(`Cannot send History event of ${NEXT_SONG} due to missing data. 
+                songId: '${payload.songId}', duration: '${payload.durationPrecentage}'
+                userId: '${state.user._id}' `)
+        }
     }
 }
