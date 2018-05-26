@@ -9,7 +9,7 @@ const FIRST_PLAY_FINISHED = "FIRST_PLAY_FINISHED"
 const SONG_ENDED = "SONG_ENDED"
 
 const Host = Helpers.config.ServerHost;
-export const SAVE_EVENT = `http://${Host}/history/saveEvent`
+export const SAVE_EVENT = `${Host}/history/saveEvent`
 
 export const PlayerActions = {
     PLAY,

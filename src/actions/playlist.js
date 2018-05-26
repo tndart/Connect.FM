@@ -9,7 +9,7 @@ export const NEW_PLAYLIST_RES = 'NEW_PLAYLIST_RES'
 export const NEW_PLAYLIST_ERR = 'NEW_PLAYLIST_ERR'
 
 const Host = Helpers.config.ServerHost;
-const GET_NEXT_PLAYLIST_URL = `http://${Host}/playlist/getnext?userid={userid}&amount={MAX_RESULTS}`
+const GET_NEXT_PLAYLIST_URL = `${Host}/playlist/getnext?userid={userid}&amount={MAX_RESULTS}`
 const MAX_RESULTS = 10;
 
 // Action Creators

@@ -21,7 +21,7 @@ export function getStore(){
 export const config = {
     AuthorizationCookieName: "ConnectFM|Auth",
     UserDataCookieName: "ConnectFM|UserData",
-    ServerHost: "193.106.55.131:8080",    
+    ServerHost: `https://connectfm.cloudns.cc:8080`,    
 }
 
 // ServerHost: "localhost:8080"

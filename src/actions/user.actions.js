@@ -3,9 +3,9 @@ import { APIActions } from './api.actions';
 import * as Helpers from '../util/helpers';
 
 const Host = Helpers.config.ServerHost;
-const SIGNUP_ENDPOINT = `http://${Host}/user/signup`
-const LOGIN_ENDPOINT = `http://${Host}/user/login`
-const USER_PREFERENCES_ENDPOINT = `http://${Host}/user/preferences`
+const SIGNUP_ENDPOINT = `${Host}/user/signup`
+const LOGIN_ENDPOINT = `${Host}/user/login`
+const USER_PREFERENCES_ENDPOINT = `${Host}/user/preferences`
 
 // Actions
 const SIGNUP_LOCAL = 'SIGNUP_LOCAL'

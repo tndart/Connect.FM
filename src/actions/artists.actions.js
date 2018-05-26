@@ -12,7 +12,7 @@ export const ARTISTS_CHECKING_TOGGLE = 'ARTISTS_CHECKING_TOGGLE'
 export const REMOVE_FROM_TOPARTISTS = 'REMOVE_FROM_TOPARTISTS'
 
 const Host = Helpers.config.ServerHost;
-export const ARTISTS_BY_TAG_URL = `http://${Host}/tag/{tag}/artists`
+export const ARTISTS_BY_TAG_URL = `${Host}/tag/{tag}/artists`
 
 function Request(dispatch, tag, skip, limit){
     dispatch({type: TOP_ARTISTS_REQ}) // event

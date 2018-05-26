@@ -4,7 +4,7 @@ import * as Helpers from '../util/helpers';
 
 // Consts
 const Host = Helpers.config.ServerHost;
-const TAGS_TOP_URL = `http://${Host}/tag/top`
+const TAGS_TOP_URL = `${Host}/tag/top`
 
 // Actions Name
 export const GET_TOP_TAGS = 'GET_TOP_TAGS'
