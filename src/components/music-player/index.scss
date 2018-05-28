@@ -39,12 +39,13 @@ div.playlist-container {
         width: 100%;
         
         li.playlist-track {
-            @include HoverButton( #fff );
+            background-color: rgba(0,0,0,0.05);
+            color: #777;
             margin: 0 auto;
+            padding: 2px;
             margin-bottom: 1%;
             border-radius: 15px;
             width: 400px;
-            text-indent: 8%;
         }   
     }
 }
